@@ -41,6 +41,10 @@ gem 'draper'
 gem 'data_migrate'
 gem 'font-awesome-rails'
 gem 'pundit'
+gem 'turbolinks', '~> 5'
+
+gem 'bootstrap', '~> 4.1.2'
+gem 'jquery-rails' # Required for Bootstrap.
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
