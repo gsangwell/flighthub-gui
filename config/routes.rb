@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  get 'cluster/index'
-  root 'cluster#index'
+  constraints Clearance::Constraints::SignedIn.new do
+    get 'cluster/index'
 
-  get     '/login',   to: 'sessions#new'
-  post    '/login',   to: 'sessions#create'
-  delete  '/logout',  to: 'sessions#destroy'
+    delete  '/logout',  to: 'sessions#destroy'
+  end
+
+  constraints Clearance::Constraints::SignedOut.new do
+    get     '/login',   to: 'sessions#new'
+    post    '/login',   to: 'sessions#create'
+
+    root 'sessions#new'
+  end
 end
