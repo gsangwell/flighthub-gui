@@ -8,7 +8,8 @@
          href="<%= cluster_index_path %>">
          Appliance Information
       </a>
-      <a class="nav-item nav-link" href="#">
+      <a class="nav-item nav-link <%= 'active' if current_page?(users_index_path) %>"
+         href="<%= users_index_path %>">
         User Management
       </a>
       <a class="nav-item nav-link" href="#">
