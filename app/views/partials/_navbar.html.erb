@@ -7,8 +7,9 @@
       <a class="nav-item nav-link" href="#">
         User Management
       </a>
-      <a class="nav-item nav-link" href="#">
-        Appliance Information
+      <a class="nax-item nav-link <%= 'active' if current_page?(cluster_index_path) %>"
+         href="<%= cluster_index_path %>">
+         Appliance Information
       </a>
       <a class="nav-item nav-link" href="#">
         SSH Key Management
