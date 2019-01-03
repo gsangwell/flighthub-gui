@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get 'cluster/index'
 
     delete  '/logout',  to: 'sessions#destroy'
+
+    root 'cluster#index'
   end
 
   constraints Clearance::Constraints::SignedOut.new do
