@@ -1,3 +1,20 @@
-<div style="text-align: center;">
-  <h1> [User management links go here] </h1>
+<div style="text-align: center; display: block;">
+  <%= button_to 'Add',
+      users_add_path,
+      class: 'btn btn-primary mt-2',
+      style: 'width: 10%;',
+      method: :get
+  %>
+  <%= button_to 'Modify',
+      users_modify_path,
+      class: 'btn btn-primary mt-2',
+      style: 'width: 10%',
+      method: :get
+  %>
+  <%= button_to 'Remove',
+      users_remove_path,
+      class: 'btn btn-primary mt-2',
+      style: 'width: 10%',
+      method: :get
+  %>
 </div>
