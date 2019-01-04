@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'cluster/index'
     get 'users/index', to: 'users#index'
     get 'users/add', to: 'users#new'
+    post 'users/add', to: 'users#create'
     get 'users/modify', to: 'users#modify'
     get 'users/remove', to: 'users#remove'
 
