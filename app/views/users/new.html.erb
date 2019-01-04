@@ -1,3 +1,16 @@
 <div style="text-align: center;">
-  <h1> [Add users here] </h1>
+  <div class="login-form">
+    <%= form_for(:user, url: users_add_path) do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit 'Add User', class: 'btn btn-primary mt-2' %>
+    <% end %>
+  </div>
 </div>
