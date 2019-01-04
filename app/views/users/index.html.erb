@@ -14,4 +14,30 @@
       <%= f.submit 'Add User', class: 'btn btn-primary mt-2' %>
     <% end %>
   </div>
+
+  <div class="table-responsive mt-4">
+    <h1> Existing Users </h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th> Username </th>
+          <th> Email Address </th>
+          <th> Modify </th>
+          <th> Delete </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @users %>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.username %></td>
+              <td><%= user.email %></td>
+              <td><i class="fa fa-pencil"></i></td>
+              <td><i class="fa fa-trash"></i></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
