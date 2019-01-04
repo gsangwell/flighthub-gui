@@ -1,7 +1,7 @@
 <% content_for :title, 'Login' %>
 <div style="text-align: center;">
   <h1> Login Form </h1>
-  <div class="login-form">
+  <div>
     <div>
       <%= form_for(:session, url: login_path) do |f| %>
         <%= f.label :username %>
