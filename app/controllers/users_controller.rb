@@ -12,19 +12,19 @@ class UsersController < ApplicationController
         )
 
         if new_user.save
-          flash.now[:success] = 'User created successfully'
-          render 'index'
+          flash[:success] = 'User created successfully'
+          redirect_to users_path
         else
-          flash.now[:danger] = 'Encountered an error whilst saving the new user'
-          render 'index'
+          flash[:danger] = 'Encountered an error whilst saving the new user'
+          redirect_to users_path
         end
       else
-        flash.now[:danger] = 'The passwords do not match'
-        render 'index'
+        flash[:danger] = 'The passwords do not match'
+        redirect_to users_path
       end
     else
-      flash.now[:danger] = 'That username is already in use'
-      render 'index'
+      flash[:danger] = 'That username is already in use'
+      redirect_to users_path
     end
   end
 
