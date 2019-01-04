@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   constraints Clearance::Constraints::SignedIn.new do
     get 'cluster/index'
 
-    get 'users/index', to: 'users#index'
-    post 'users/index', to: 'users#create'
+    get 'users', to: 'users#index'
+    post 'users', to: 'users#create'
 
     delete  '/logout',  to: 'sessions#destroy'
 
