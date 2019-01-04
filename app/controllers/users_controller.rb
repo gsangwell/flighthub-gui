@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   def index
   end
 
-  def new
-  end
-
   def create
     user = User.find_by(username: user_params[:username])
     unless user
@@ -19,15 +16,15 @@ class UsersController < ApplicationController
           render 'index'
         else
           flash.now[:danger] = 'Encountered an error whilst saving the new user'
-          render 'new'
+          render 'index'
         end
       else
         flash.now[:danger] = 'The passwords do not match'
-        render 'new'
+        render 'index'
       end
     else
       flash.now[:danger] = 'That username is already in use'
-      render 'new'
+      render 'index'
     end
   end
 
