@@ -30,6 +30,21 @@ class UsersController < ApplicationController
   end
 
   def modify
+    user = User.find(modify_params[:id])
+    user.username = modify_params[:username]
+    user.email = modify_params[:email]
+
+    unless modify_params[:password].empty?
+      user.password = modify_params[:password]
+    end
+
+    if user.save
+      flash[:success] = 'User modified successfully'
+    else
+      flash[:danger] = 'Encountered an error whilst updating the user'
+    end
+
+    redirect_to users_path
   end
 
   def remove
@@ -39,5 +54,9 @@ class UsersController < ApplicationController
 
   def user_params
     params[:user]
+  end
+
+  def modify_params
+    params[:user_modify]
   end
 end
