@@ -14,19 +14,17 @@ class UsersController < ApplicationController
 
         if new_user.save
           flash[:success] = 'User created successfully'
-          redirect_to users_path
         else
           flash[:danger] = 'Encountered an error whilst saving the new user'
-          redirect_to users_path
         end
       else
         flash[:danger] = 'The passwords do not match'
-        redirect_to users_path
       end
     else
       flash[:danger] = 'That username is already in use'
-      redirect_to users_path
     end
+
+    redirect_to users_path
   end
 
   def modify
