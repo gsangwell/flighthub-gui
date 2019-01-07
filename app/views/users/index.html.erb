@@ -44,7 +44,19 @@
                   <i class="fa fa-pencil"></i>
                 </button>
               </td>
-              <td><i class="fa fa-trash"></i></td>
+              <td>
+                <%= link_to raw("<i class=\"fa fa-trash\"></i>"),
+                              users_delete_path(user: user),
+                              class: "btn btn-danger",
+                              data: {
+                                confirm: <<~EOF
+                                  Are you sure you wish to delete this user?
+                                  This action is non-reversible
+                                EOF
+                              },
+                              method: :post
+                %>
+              </td>
             </tr>
           <% end %>
         <% end %>
