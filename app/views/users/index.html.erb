@@ -1,36 +1,36 @@
 <div style="text-align: center; display: block;">
   <div>
     <h1> Add New User </h1>
-    <%= form_for(:user, url: users_path) do |f| %>
+    <%= form_for(:user, url: users_path, html: { class: 'creationForm' }) do |f| %>
       <div class="row mb-1">
-        <div class="col-sm-5">
+        <div class="col-sm-3 formLabel">
           <%= f.label :username, 'Username:' %>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-9">
           <%= f.text_field :username, class: 'form-control', required: true %>
         </div>
       </div>
       <div class="row mb-1">
-        <div class="col-sm-5">
+        <div class="col-sm-3 formLabel">
           <%= f.label :email, 'Email:' %>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-9">
           <%= f.email_field :email, class: 'form-control', required: true %>
         </div>
       </div>
       <div class="row mb-1">
-        <div class="col-sm-5">
+        <div class="col-sm-3 formLabel">
           <%= f.label :password, 'Password:' %>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-9">
           <%= f.password_field :password, class: 'form-control', required: true %>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-3 formLabel">
           <%= f.label :password_confirmation, 'Confirm password:' %>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-9">
           <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
         </div>
       </div>
@@ -88,22 +88,40 @@
   </div>
 </div>
 
-<div id="ModifyModal" class="modal fade" style="text-align: center;" role="dialog">
-  <div class="modal-dialog">
+<div id="ModifyModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title center"> Modify User </h4>
       </div>
       <div class="modal-body">
-        <%= form_for(:user_modify, url: users_modify_path) do |f| %>
-          <%= f.label :username %>
-          <%= f.text_field :username, class: 'form-control' %>
+        <%= form_for(:user_modify, url: users_modify_path, html: { class: 'creationForm' }) do |f| %>
+          <div class="row mb-1">
+            <div class="col-sm-3 formLabel">
+              <%= f.label :username, 'Username:' %>
+            </div>
+            <div class="col-sm-9">
+              <%= f.text_field :username, class: 'form-control' %>
+            </div>
+          </div>
 
-          <%= f.label :email %>
-          <%= f.text_field :email, class: 'form-control' %>
+          <div class="row mb-1">
+            <div class="col-sm-3 formLabel">
+              <%= f.label :email, 'Email:' %>
+            </div>
+            <div class="col-sm-9">
+              <%= f.text_field :email, class: 'form-control' %>
+            </div>
+          </div>
 
-          <%= f.label :password %>
-          <%= f.password_field :password, class: 'form-control' %>
+          <div class="row mb-1">
+            <div class="col-sm-3 formLabel">
+              <%= f.label :password, 'Password:' %>
+            </div>
+            <div class="col-sm-9">
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+          </div>
 
           <%= f.hidden_field :id %>
 
