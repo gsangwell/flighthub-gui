@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       if user_params[:password] == user_params[:password_confirmation]
         new_user = User.new(
           username: user_params[:username],
+          email: user_params[:email],
           password: user_params[:password]
         )
 
