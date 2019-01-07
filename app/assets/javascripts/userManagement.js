@@ -1,5 +1,5 @@
 function populateModifyModal() {
-  $('#ModifyModal').on('show.bs.modal', function(e) {
+  $('#modifyModal').on('show.bs.modal', function(e) {
     var username = e.relatedTarget.dataset.username;
     var email = e.relatedTarget.dataset.email;
     var id = e.relatedTarget.dataset.id;

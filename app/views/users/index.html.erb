@@ -1,9 +1,9 @@
 <div style="text-align: center; display: block;">
   <div>
     <h1> Add New User </h1>
-    <%= form_for(:user, url: users_path, html: { class: 'creationForm' }) do |f| %>
+    <%= form_for(:user, url: users_path, html: { class: 'creation-form' }) do |f| %>
       <div class="row mb-1">
-        <div class="col-sm-3 formLabel">
+        <div class="col-sm-3 form-label">
           <%= f.label :username, 'Username:' %>
         </div>
         <div class="col-sm-9">
@@ -12,7 +12,7 @@
       </div>
 
       <div class="row mb-1">
-        <div class="col-sm-3 formLabel">
+        <div class="col-sm-3 form-label">
           <%= f.label :email, 'Email:' %>
         </div>
         <div class="col-sm-9">
@@ -22,7 +22,7 @@
 
       <hr>
       <div class="row mb-1">
-        <div class="col-sm-3 formLabel">
+        <div class="col-sm-3 form-label">
           <%= f.label :password, 'Password:' %>
         </div>
         <div class="col-sm-9">
@@ -31,7 +31,7 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-3 formLabel">
+        <div class="col-sm-3 form-label">
           <%= f.label :password_confirmation, 'Confirm password:' %>
         </div>
         <div class="col-sm-9">
@@ -64,7 +64,7 @@
                 <button type="button"
                         class="btn btn-info"
                         data-toggle="modal"
-                        data-target="#ModifyModal"
+                        data-target="#modifyModal"
                         data-username="<%= user.username %>"
                         data-email="<%= user.email %>"
                         data-id="<%= user.id %>"
@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<div id="ModifyModal" class="modal fade" role="dialog">
+<div id="modifyModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -103,10 +103,10 @@
         <%= form_for(
           :user_modify,
           url: users_modify_path,
-          html: { class: 'creationForm' }) do |f|
+          html: { class: 'creation-form' }) do |f|
         %>
           <div class="row mb-1">
-            <div class="col-sm-3 formLabel">
+            <div class="col-sm-3 form-label">
               <%= f.label :username, 'Username:' %>
             </div>
             <div class="col-sm-9">
@@ -115,7 +115,7 @@
           </div>
 
           <div class="row mb-1">
-            <div class="col-sm-3 formLabel">
+            <div class="col-sm-3 form-label">
               <%= f.label :email, 'Email:' %>
             </div>
             <div class="col-sm-9">
@@ -125,7 +125,7 @@
 
           <hr>
           <div class="row mb-1">
-            <div class="col-sm-3 formLabel">
+            <div class="col-sm-3 form-label">
               <%= f.label :password, 'Password:' %>
             </div>
             <div class="col-sm-9">
