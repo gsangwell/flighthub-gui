@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'users', to: 'users#index'
     post 'users', to: 'users#create'
     post 'users/modify', to: 'users#modify'
+    post 'users/delete', to: 'users#remove'
 
     delete  '/logout',  to: 'sessions#destroy'
 
