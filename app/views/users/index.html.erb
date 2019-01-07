@@ -2,18 +2,38 @@
   <div>
     <h1> Add New User </h1>
     <%= form_for(:user, url: users_path) do |f| %>
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control', required: true %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control', required: true %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control', required: true %>
-
-      <%= f.label :password_confirmation, 'Confirm password' %>
-      <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
-
+      <div class="row mb-1">
+        <div class="col-sm-5">
+          <%= f.label :username, 'Username:' %>
+        </div>
+        <div class="col-sm-7">
+          <%= f.text_field :username, class: 'form-control', required: true %>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-sm-5">
+          <%= f.label :email, 'Email:' %>
+        </div>
+        <div class="col-sm-7">
+          <%= f.email_field :email, class: 'form-control', required: true %>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-sm-5">
+          <%= f.label :password, 'Password:' %>
+        </div>
+        <div class="col-sm-7">
+          <%= f.password_field :password, class: 'form-control', required: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5">
+          <%= f.label :password_confirmation, 'Confirm password:' %>
+        </div>
+        <div class="col-sm-7">
+          <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+        </div>
+      </div>
       <%= f.submit 'Add User', class: 'btn btn-primary mt-2' %>
     <% end %>
   </div>
