@@ -15,7 +15,7 @@
       <a class="nav-item nav-link" href="#">
         SSH Key Management
       </a>
-      <%= link_to 'Sign Out',
+      <%= link_to "(#{current_user.username}) Sign Out",
           logout_path,
           method: :delete,
           class: 'nav-item nav-link logout-btn'
