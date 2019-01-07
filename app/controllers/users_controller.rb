@@ -52,6 +52,19 @@ class UsersController < ApplicationController
   end
 
   def remove
+    user = User.find(user_params)
+
+    if user == current_user
+      flash[:danger] = "You can't delete yourself"
+    else
+      if user.destroy
+        flash[:success] = 'User removed successfully'
+      else
+        flash[:danger] = 'Encountered an error whilst deleting the user'
+      end
+    end
+
+    redirect_to users_path
   end
 
   private
