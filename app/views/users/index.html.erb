@@ -62,7 +62,7 @@
       <div class="modal-body">
         <%= form_for(:user_modify, url: users_modify_path) do |f| %>
           <%= f.label :username %>
-          <%= f.text_field :username, class: 'form-control', required: true %>
+          <%= f.text_field :username, class: 'form-control' %>
 
           <%= f.label :email %>
           <%= f.text_field :email, class: 'form-control' %>
