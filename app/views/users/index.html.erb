@@ -32,12 +32,52 @@
             <tr>
               <td><%= user.username %></td>
               <td><%= user.email %></td>
-              <td><i class="fa fa-pencil"></i></td>
+              <td>
+                <button type="button"
+                        class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#ModifyModal"
+                        data-username="<%= user.username %>"
+                        data-email="<%= user.email %>"
+                        data-id="<%= user.id %>"
+                >
+                  <i class="fa fa-pencil"></i>
+                </button>
+              </td>
               <td><i class="fa fa-trash"></i></td>
             </tr>
           <% end %>
         <% end %>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div id="ModifyModal" class="modal fade" style="text-align: center;" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title center"> Modify User </h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(:user_modify, url: users_modify_path) do |f| %>
+          <%= f.label :username %>
+          <%= f.text_field :username, class: 'form-control' %>
+
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+          <%= f.hidden_field :id %>
+
+          <%= f.submit 'Modify User', class: 'btn btn-primary mt-2' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+      </div>
+    </div>
   </div>
 </div>
