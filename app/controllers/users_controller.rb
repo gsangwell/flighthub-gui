@@ -29,8 +29,14 @@ class UsersController < ApplicationController
 
   def modify
     user = User.find(modify_params[:id])
-    user.username = modify_params[:username]
-    user.email = modify_params[:email]
+
+    unless modify_params[:username].empty?
+      user.username = modify_params[:username]
+    end
+
+    unless modify_params[:email].empty?
+      user.email = modify_params[:email]
+    end
 
     unless modify_params[:password].empty?
       user.password = modify_params[:password]
