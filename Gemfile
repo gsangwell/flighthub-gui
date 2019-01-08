@@ -42,6 +42,7 @@ gem 'data_migrate'
 gem 'font-awesome-rails'
 gem 'pundit'
 gem 'turbolinks', '~> 5'
+gem 'commonmarker'
 
 gem 'bootstrap', '~> 4.1.2'
 gem 'jquery-rails' # Required for Bootstrap.
