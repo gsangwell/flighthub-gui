@@ -1,3 +1,24 @@
 <div>
-  <%= @ssh_keys %>
+  <div class="table-responive mt-4">
+    <table class="table table-bordered center" style="table-layout: fixed; width: 75%;">
+      <thead>
+        <colgroup>
+          <col span="1" style="width: 40px;">
+          <col span="1" style="width: auto;">
+        </colgroup>
+        <tr>
+          <th></th>
+          <th> Key </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ssh_keys.each do |key| %>
+          <tr>
+            <td><i class="fa fa-key"></i></td>
+            <td style="word-wrap: break-word;"><%= key %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
