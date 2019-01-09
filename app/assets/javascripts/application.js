@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require textarea-autosize.js
