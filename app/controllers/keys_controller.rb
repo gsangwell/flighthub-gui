@@ -38,7 +38,7 @@ class KeysController < ApplicationController
   private
 
   def file_data
-    data ||= IO.binread("tmp/keys").lines.map(&:chomp)
+    data ||= IO.binread("tmp/keys").lines.map
   end
 
   def new_key
