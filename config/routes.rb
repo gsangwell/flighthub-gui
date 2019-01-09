@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     post 'users/modify', to: 'users#modify'
     post 'users/delete', to: 'users#remove'
 
+    get 'ssh', to: 'keys#index'
+
     delete  '/logout',  to: 'sessions#destroy'
 
     root 'cluster#index'
