@@ -12,7 +12,13 @@ class KeysController < ApplicationController
     file_data.each { |l| tmp << l unless l == params[:key] }
     tmp.close
 
-    FileUtils.mv(tmp.path, 'tmp/keys')
+    if FileUtils.mv(tmp.path, 'tmp/keys')
+      flash[:success] = 'SSH key successfully removed'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to remove the SSH key'
+    end
+
+    redirect_to ssh_path
   end
 
   private
