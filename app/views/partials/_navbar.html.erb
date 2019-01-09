@@ -12,7 +12,8 @@
          href="<%= users_path %>">
         User Management
       </a>
-      <a class="nav-item nav-link" href="#">
+      <a class="nav-item nav-link <%= 'active' if current_page?(ssh_path) %>"
+         href="<%= ssh_path %>">
         SSH Key Management
       </a>
       <%= link_to "(#{current_user.username}) Sign Out",
