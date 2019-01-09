@@ -1,5 +1,6 @@
 class KeysController < ApplicationController
   def index
-    @ssh_keys = IO.binread("/path/to/ssh/keys")
+    file_data = IO.binread("/path/to/ssh/keys")
+    @ssh_keys = file_data.lines.map(&:chomp)
   end
 end
