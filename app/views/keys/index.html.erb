@@ -1,4 +1,20 @@
 <div>
+  <div style="text-align: center;">
+    <h1> Add New SSH Key </h1>
+    <%= form_for(:new_key, url: ssh_path, html: { class: 'creation-form' }) do |f| %>
+      <div class="row mb-1">
+        <div class="col-sm-1 form-label">
+          <%= f.label :key, 'Key:' %>
+        </div>
+        <div class="col-sm-11">
+          <%= f.text_area :key, class: 'form-control', required: true %>
+        </div>
+      </div>
+
+      <%= f.submit 'Add Key', class: 'btn btn-primary mt-2' %>
+    <% end %>
+  </div>
+
   <div class="table-responive mt-4">
     <table class="table table-bordered center" style="table-layout: fixed; width: 75%;">
       <thead>
