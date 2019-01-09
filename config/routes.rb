@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post 'users/delete', to: 'users#remove'
 
     get 'ssh', to: 'keys#index'
+    post 'ssh', to: 'keys#create'
     post 'ssh/delete', to: 'keys#delete'
 
     delete  '/logout',  to: 'sessions#destroy'
