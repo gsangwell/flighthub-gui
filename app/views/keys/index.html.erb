@@ -5,10 +5,12 @@
         <colgroup>
           <col span="1" style="width: 40px;">
           <col span="1" style="width: auto;">
+          <col span="1" style="width: 70px;">
         </colgroup>
         <tr>
           <th></th>
           <th> Key </th>
+          <th> Delete </th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +18,20 @@
           <tr>
             <td><i class="fa fa-key"></i></td>
             <td style="word-wrap: break-word;"><%= key %></td>
+            <td>
+                <%= link_to raw("<i class=\"fa fa-trash\"></i>"),
+                              ssh_delete_path(key: key),
+                              class: "btn btn-danger",
+                              style: 'width: 100%;',
+                              data: {
+                                confirm: <<~EOF
+                                  Are you sure you wish to delete this key?
+                                  This action is non-reversible
+                                EOF
+                              },
+                              method: :post
+                %>
+            </td>
           </tr>
         <% end %>
       </tbody>
