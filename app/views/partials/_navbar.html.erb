@@ -1,7 +1,7 @@
 <% if signed_in? %>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="<%= root_path %>">
-      Overware
+      <%= Rails.application.config.application_name %> Appliance
     </a>
     <div class="navbar-nav">
       <a class="nax-item nav-link <%= 'active' if current_page?(cluster_index_path) %>"

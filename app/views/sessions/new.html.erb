@@ -1,7 +1,7 @@
 <% content_for :title, 'Login' %>
 <div style="text-align: center;">
   <%= image_tag 'square-logo.png', size: '200x200', class: 'mt-4' %>
-  <h1> Login Form </h1>
+  <h1><%= Rails.application.config.application_name %> Appliance </h1>
   <div>
     <div>
       <%= form_for(:session, url: login_path) do |f| %>
