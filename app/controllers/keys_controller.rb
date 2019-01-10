@@ -26,7 +26,7 @@ class KeysController < ApplicationController
     file_data.each { |l| tmp << l unless l == params[:key] }
     tmp.close
 
-    if FileUtils.mv(tmp.path, 'tmp/keys')
+    if FileUtils.mv(tmp.path, Rails.application.config.ssh_keys)
       flash[:success] = 'SSH key successfully removed'
     else
       flash[:danger] = 'Encountered an error whilst trying to remove the SSH key'
@@ -38,7 +38,7 @@ class KeysController < ApplicationController
   private
 
   def file_data
-    data ||= IO.binread("tmp/keys").lines.map
+    data ||= IO.binread(Rails.application.config.ssh_keys).lines.map
   end
 
   def new_key
