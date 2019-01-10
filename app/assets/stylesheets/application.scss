@@ -23,6 +23,7 @@ form {
   padding: 20px;
   display: inline-block;
   margin-top: .5rem;
+  color: black;
 }
 
 table.center {
@@ -36,4 +37,12 @@ table.center {
 
 textarea {
   min-height: 100px;
+}
+
+.navbar {
+  background-color: black;
+}
+
+.btn-primary {
+  background-color: #2794d8;
 }
