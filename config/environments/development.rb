@@ -60,4 +60,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.application_name = ENV['APPLICATION_NAME'] || 'Development'
+  config.appliance_information = ENV['APPLIANCE_INFORMATION_FILE_PATH']
 end

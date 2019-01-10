@@ -93,4 +93,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.application_name = ENV['APPLICATION_NAME']
+  config.appliance_information = ENV['APPLIANCE_INFORMATION_FILE_PATH']
 end
