@@ -43,6 +43,7 @@ gem 'font-awesome-rails'
 gem 'pundit'
 gem 'turbolinks', '~> 5'
 gem 'commonmarker'
+gem 'dotenv-rails'
 
 gem 'bootstrap', '~> 4.1.2'
 gem 'jquery-rails' # Required for Bootstrap.
