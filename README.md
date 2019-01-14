@@ -1,24 +1,39 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Alces Overware
 
-Things you may want to cover:
+## Installation 
 
-* Ruby version
+1. Ensure Ruby version as specified in [`.ruby-version`](./.ruby-version) is
+   installed
 
-* System dependencies
+2. PostgreSQL 9.6 installed and running. The following should achieve this for
+   a CentOS machine:
 
-* Configuration
+   ```bash
+   yum install postgresql96 postgresql96-devel postgresql96-server
+   postgresql-setup initdb
+   sudoedit `/var/lib/pgsql/data/pg_hba.conf`
+   # Change entries in `METHOD` column to 'trust' and then save the file
+   systemctl start postgresql
+   ```
 
-* Database creation
+3. Yarn installed
 
-* Database initialization
+4. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
-* How to run the test suite
+5. Install gems with `bundle install`
 
-* Services (job queues, cache servers, search engines, etc.)
+6. Prepare the database
 
-* Deployment instructions
+6.1. Create DB `bin/rails db:create`
 
-* ...
+6.2. Load schema `bin/rails db:schema:load`
+
+7. Copy the example environment variables file using `cp '.env.example', '.env'`
+
+8. Edit `.env` as required to use valid environment variables. Some of these 
+   are only important for specific environments.
+
+9. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
+
+10. Launch server using `bin/rails s -p 80 -e production`
