@@ -29,11 +29,20 @@
 
    6.2. Load schema `bin/rails db:schema:load`
 
-7. Copy the example environment variables file using `cp '.env.example', '.env'`
+7. Create an initial user
 
-8. Edit `.env` as required to use valid environment variables. Some of these 
+   7.1. Enter the rails console using `RAILS_ENV=production rails c`
+
+   7.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
+
+8. Copy the example environment variables file using `cp '.env.example', '.env'`
+
+9. Edit `.env` as required to use valid environment variables. Some of these 
    are only important for specific environments.
 
-9. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
+10. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
 
-10. Launch server using `bin/rails s -p 80 -e production`
+11. Launch server using `bin/rails s -p 80 -e production`
+
+12. Access the application at its public IP and use the details for the user
+    you created in step 7 to log in
