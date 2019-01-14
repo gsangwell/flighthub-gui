@@ -25,9 +25,9 @@
 
 6. Prepare the database
 
-6.1. Create DB `bin/rails db:create`
+   6.1. Create DB `bin/rails db:create`
 
-6.2. Load schema `bin/rails db:schema:load`
+   6.2. Load schema `bin/rails db:schema:load`
 
 7. Copy the example environment variables file using `cp '.env.example', '.env'`
 
