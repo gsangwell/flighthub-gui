@@ -21,24 +21,25 @@
 
 4. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
-5. Install gems with `bundle install`
+5. Copy the example environment variables file using `cp '.env.example', '.env'`
 
-6. Prepare the database
-
-   6.1. Create DB `bin/rails db:create`
-
-   6.2. Load schema `bin/rails db:schema:load`
-
-7. Create an initial user
-
-   7.1. Enter the rails console using `RAILS_ENV=production rails c`
-
-   7.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
-
-8. Copy the example environment variables file using `cp '.env.example', '.env'`
-
-9. Edit `.env` as required to use valid environment variables. Some of these 
+6. Edit `.env` as required to use valid environment variables. Some of these 
    are only important for specific environments.
+
+7. Install gems with `bundle install`
+
+8. Prepare the database
+
+   8.1. Create DB `bin/rails db:create`
+
+   8.2. Load schema `bin/rails db:schema:load`
+
+9. Create an initial user
+
+   9.1. Enter the rails console using `RAILS_ENV=production rails c`
+
+   9.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
+
 
 10. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
 
