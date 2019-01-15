@@ -9,8 +9,11 @@
 2. PostgreSQL 9.6 installed and running. The following should achieve this for
    a CentOS machine:
 
+   2.1. Install as described [here](https://wiki.postgresql.org/wiki/YUM_Installation)
+
+   2.2. Configure PostgreSQL like the following:
+
    ```bash
-   yum install postgresql96 postgresql96-devel postgresql96-server
    postgresql-setup initdb
    sudoedit `/var/lib/pgsql/data/pg_hba.conf`
    # Change entries in `METHOD` column to 'trust' and then save the file
