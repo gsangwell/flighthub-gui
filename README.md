@@ -30,9 +30,9 @@
 
 8. Prepare the database
 
-   8.1. Create DB `bin/rails db:create`
+   8.1. Create DB `RAILS_ENV=production bin/rails db:create`
 
-   8.2. Load schema `bin/rails db:schema:load`
+   8.2. Load schema `RAILS_ENV=production bin/rails db:schema:load`
 
 9. Create an initial user
 
