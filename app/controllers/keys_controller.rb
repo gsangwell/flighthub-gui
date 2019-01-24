@@ -7,9 +7,13 @@ class KeysController < ApplicationController
   end
 
   def create
-    file = File.open('tmp/keys', 'a')
+    tmp = Tempfile.new("temp_keys")
 
-    if file.write(new_key)
+    file_data.each { |l| tmp << l }
+    tmp.write(new_key)
+    tmp.close
+
+    if FileUtils.mv(tmp.path, Rails.application.config.ssh_keys, :preserve => true)
       flash[:success] = 'SSH key successfully added'
     else
       flash[:danger] = 'Encountered an error whilst trying to add the SSH key'
@@ -26,7 +30,7 @@ class KeysController < ApplicationController
     file_data.each { |l| tmp << l unless l == params[:key] }
     tmp.close
 
-    if FileUtils.mv(tmp.path, Rails.application.config.ssh_keys)
+    if FileUtils.mv(tmp.path, Rails.application.config.ssh_keys, :preserve => true)
       flash[:success] = 'SSH key successfully removed'
     else
       flash[:danger] = 'Encountered an error whilst trying to remove the SSH key'
