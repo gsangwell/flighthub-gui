@@ -7,15 +7,19 @@ class KeysController < ApplicationController
   end
 
   def create
-    file = File.open('tmp/keys', 'a')
+    tmp = Tempfile.new("temp_keys")
 
-    if file.write(new_key)
+    file_data.each { |l| tmp << l }
+    tmp.write "#{new_key}\n"
+    tmp.close
+
+    if `cp --no-preserve=mode,ownership #{tmp.path} #{Rails.application.config.ssh_keys}`
       flash[:success] = 'SSH key successfully added'
     else
       flash[:danger] = 'Encountered an error whilst trying to add the SSH key'
     end
 
-    file.close
+    tmp.delete
 
     redirect_to ssh_path
   end
@@ -26,11 +30,13 @@ class KeysController < ApplicationController
     file_data.each { |l| tmp << l unless l == params[:key] }
     tmp.close
 
-    if FileUtils.mv(tmp.path, Rails.application.config.ssh_keys)
+    if `cp --no-preserve=mode,ownership #{tmp.path} #{Rails.application.config.ssh_keys}`
       flash[:success] = 'SSH key successfully removed'
     else
       flash[:danger] = 'Encountered an error whilst trying to remove the SSH key'
     end
+
+    tmp.delete
 
     redirect_to ssh_path
   end
