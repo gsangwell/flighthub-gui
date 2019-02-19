@@ -9,4 +9,12 @@ class VpnController < ApplicationController
       flash[:danger] = 'Enountered an error whilst trying to start the VPN'
     end
   end
+
+  def stop
+    if system("systemctl stop openvpn@flightcenter")
+      flash[:success] = 'VPN stopped'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to stop the VPN'
+    end
+  end
 end
