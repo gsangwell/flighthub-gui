@@ -17,4 +17,12 @@ class VpnController < ApplicationController
       flash[:danger] = 'Encountered an error whilst trying to stop the VPN'
     end
   end
+
+  def restart
+    if system("systemctl restart openvpn@flightcenter")
+      flash[:success] = 'VPN restarted'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to restart the VPN'
+    end
+  end
 end
