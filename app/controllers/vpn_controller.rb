@@ -3,7 +3,7 @@ class VpnController < ApplicationController
   end
 
   def start
-    if system("systemctl start openvpn@flightcenter")
+    if run_shell_command("systemctl start openvpn@flightcenter")
       flash[:success] = 'VPN started'
     else
       flash[:danger] = 'Enountered an error whilst trying to start the VPN'
@@ -11,7 +11,7 @@ class VpnController < ApplicationController
   end
 
   def stop
-    if system("systemctl stop openvpn@flightcenter")
+    if run_shell_command("systemctl stop openvpn@flightcenter")
       flash[:success] = 'VPN stopped'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the VPN'
@@ -19,7 +19,7 @@ class VpnController < ApplicationController
   end
 
   def restart
-    if system("systemctl restart openvpn@flightcenter")
+    if run_shell_command("systemctl restart openvpn@flightcenter")
       flash[:success] = 'VPN restarted'
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the VPN'
