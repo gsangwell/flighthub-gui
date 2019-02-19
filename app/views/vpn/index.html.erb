@@ -1,5 +1,5 @@
-<div>
-  <%= button_to 'Start VPN', vpn_start_path, method: :post %>
-  <%= button_to 'Stop VPN', vpn_stop_path, method: :post %>
-  <%= button_to 'Restart VPN', vpn_restart_path, method: :post %>
+<div class="btn-group-vertical">
+  <%= link_to 'Start VPN', vpn_start_path, method: :post, class: 'btn btn-primary' %>
+  <%= link_to 'Stop VPN', vpn_stop_path, method: :post, class: 'btn btn-primary' %>
+  <%= link_to 'Restart VPN', vpn_restart_path, method: :post, class: 'btn btn-primary' %>
 </div>
