@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     post 'network/edit', to: 'network#edit'
 
     get 'vpn', to: 'vpn#index'
+    post 'vpn/start', to: 'vpn#start'
+    post 'vpn/stop', to: 'vpn#stop'
+    post 'vpn/restart', to: 'vpn#restart'
 
     delete  '/logout',  to: 'sessions#destroy'
 
