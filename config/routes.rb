@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get 'network', to: 'network#index'
     post 'network/edit', to: 'network#edit'
 
+    get 'vpn', to: 'vpn#index'
+
     delete  '/logout',  to: 'sessions#destroy'
 
     root 'cluster#index'
