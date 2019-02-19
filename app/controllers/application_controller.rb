@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
       params[:session][:password]
     )
   end
+
+  def run_shell_command(command)
+    system(command, out: File::NULL)
+  end
 end
