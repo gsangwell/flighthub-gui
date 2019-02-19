@@ -8,6 +8,8 @@ class VpnController < ApplicationController
     else
       flash[:danger] = 'Enountered an error whilst trying to start the VPN'
     end
+
+    redirect_to vpn_path
   end
 
   def stop
@@ -16,6 +18,8 @@ class VpnController < ApplicationController
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the VPN'
     end
+
+    redirect_to vpn_path
   end
 
   def restart
@@ -24,5 +28,7 @@ class VpnController < ApplicationController
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the VPN'
     end
+
+    redirect_to vpn_path
   end
 end
