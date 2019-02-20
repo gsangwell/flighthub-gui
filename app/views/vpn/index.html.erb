@@ -1,4 +1,17 @@
 <div class="btn-group-vertical d-flex center" style="width: 30%;">
+  <div class="center">
+    <% if @active %>
+      <p class="text-success">
+        <i class="fa fa-circle mr-2" aria-hidden="true"></i>
+        VPN active
+      </p>
+    <% else %>
+      <p class="text-danger">
+        <i class="fa fa-circle mr-2" aria-hidden="true"></i>
+        VPN inactive
+      </p>
+    <% end%>
+  </div>
   <%= link_to 'Start VPN',
               vpn_start_path,
               method: :post,
