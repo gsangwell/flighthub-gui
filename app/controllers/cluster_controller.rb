@@ -13,6 +13,10 @@ class ClusterController < ApplicationController
     run_shell_command("shutdown -r +1 'Reboot requested via web interface'")
   end
 
+  def stop
+    run_shell_command("shutdown -h +1 'Shutdown requested via web interface'")
+  end
+
   private
 
   def appliance_information
