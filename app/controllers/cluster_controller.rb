@@ -3,7 +3,7 @@ class ClusterController < ApplicationController
 
   def index
     #BoltOns
-    @vpn = BoltOn.find_by(name: 'VPN')
+    @vpn = bolt_on_enabled('VPN')
 
     @content = appliance_information
     @active = vpn_status
