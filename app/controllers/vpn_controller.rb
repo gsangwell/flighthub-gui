@@ -1,5 +1,6 @@
 class VpnController < ApplicationController
   def index
+    @active = run_shell_command("systemctl is-active --quiet openvpn@flightcenter")
   end
 
   def start
