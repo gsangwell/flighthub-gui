@@ -1,5 +1,6 @@
 class VpnController < ApplicationController
   def start
+    return unless bolt_on_enabled('VPN')
     if run_shell_command("systemctl start openvpn@flightcenter")
       flash[:success] = 'VPN started'
     else
@@ -10,6 +11,7 @@ class VpnController < ApplicationController
   end
 
   def stop
+    return unless bolt_on_enabled('VPN')
     if run_shell_command("systemctl stop openvpn@flightcenter")
       flash[:success] = 'VPN stopped'
     else
@@ -20,6 +22,7 @@ class VpnController < ApplicationController
   end
 
   def restart
+    return unless bolt_on_enabled('VPN')
     if run_shell_command("systemctl restart openvpn@flightcenter")
       flash[:success] = 'VPN restarted'
     else
