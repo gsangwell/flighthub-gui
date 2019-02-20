@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   constraints Clearance::Constraints::SignedIn.new do
     get 'cluster', to: 'cluster#index'
+    get 'cluster/restart', to: 'cluster#restart'
+    get 'cluster/stop', to: 'cluster#stop'
 
     get 'users', to: 'users#index'
     post 'users', to: 'users#create'
