@@ -1,0 +1,16 @@
+<div class="card d-flex center">
+  <h5 class="card-header">Machine Management</h5>
+  <div class="card-body">
+    <div class="btn-group d-flex">
+      <% ['restart', 'stop'].each do |action| %>
+        <%= link_to action.capitalize,
+                    public_send("cluster_#{action}_path"),
+                    class: 'btn btn-danger',
+                    style: 'width: 50%;',
+                    method: :post,
+                    data: { confirm: "Are you sure you wish to #{action} this machine?" }
+        %>
+      <% end %>
+    </div>
+  </div>
+</div>
