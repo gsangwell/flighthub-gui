@@ -1,26 +1,28 @@
-<div class="card d-flex center">
-  <h5 class="card-header">VPN Management</h5>
-  <div class="card-body">
-    <h5 class="card-title <%= @active ? 'text-success' : 'text-danger' %>">
-      <i class="fa fa-circle mr-2" aria-hidden="true"></i>
-      <%= @active ? 'Active' : 'Inactive' %>
-    </h5>
-    <div class="btn-group d-flex">
-      <% ['start', 'restart'].each do |action| %>
-        <%= link_to action.capitalize,
-                    public_send("vpn_#{action}_path"),
-                    class: "btn #{action == 'stop' ? 'btn-danger' : 'btn-primary' }",
+<% if @vpn.enabled? %>
+  <div class="card d-flex center">
+    <h5 class="card-header">VPN Management</h5>
+    <div class="card-body">
+      <h5 class="card-title <%= @active ? 'text-success' : 'text-danger' %>">
+        <i class="fa fa-circle mr-2" aria-hidden="true"></i>
+        <%= @active ? 'Active' : 'Inactive' %>
+      </h5>
+      <div class="btn-group d-flex">
+        <% ['start', 'restart'].each do |action| %>
+          <%= link_to action.capitalize,
+                      public_send("vpn_#{action}_path"),
+                      class: "btn #{action == 'stop' ? 'btn-danger' : 'btn-primary' }",
+                      style: 'width: 33%;',
+                      method: :post
+          %>
+        <% end %>
+        <%= link_to 'Stop',
+                    vpn_stop_path,
+                    class: 'btn btn-danger',
                     style: 'width: 33%;',
-                    method: :post
+                    method: :post,
+                    data: { confirm: 'Are you sure you wish to stop the VPN?' }
         %>
-      <% end %>
-      <%= link_to 'Stop',
-                  vpn_stop_path,
-                  class: 'btn btn-danger',
-                  style: 'width: 33%;',
-                  method: :post,
-                  data: { confirm: 'Are you sure you wish to stop the VPN?' }
-      %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

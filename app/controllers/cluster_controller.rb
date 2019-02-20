@@ -2,6 +2,9 @@ class ClusterController < ApplicationController
   require 'commonmarker'
 
   def index
+    #BoltOns
+    @vpn = BoltOn.find_by(name: 'VPN')
+
     @content = appliance_information
     @active = vpn_status
   end
