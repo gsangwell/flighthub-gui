@@ -1,30 +1,19 @@
-<div class="btn-group-vertical d-flex center" style="width: 30%;">
-  <div class="center">
-    <% if @active %>
-      <p class="text-success">
-        <i class="fa fa-circle mr-2" aria-hidden="true"></i>
-        VPN active
-      </p>
-    <% else %>
-      <p class="text-danger">
-        <i class="fa fa-circle mr-2" aria-hidden="true"></i>
-        VPN inactive
-      </p>
-    <% end%>
+<div class="card d-flex center">
+  <h5 class="card-header">VPN Management</h5>
+  <div class="card-body">
+    <h5 class="card-title <%= @active ? 'text-success' : 'text-danger' %>">
+      <i class="fa fa-circle mr-2" aria-hidden="true"></i>
+      <%= @active ? 'Active' : 'Inactive' %>
+    </h5>
+    <div class="btn-group d-flex">
+      <% ['start', 'restart', 'stop'].each do |action| %>
+        <%= link_to action.capitalize,
+                    public_send("vpn_#{action}_path"),
+                    method: :post,
+                    class: "btn #{action == 'stop' ? 'btn-danger' : 'btn-primary' }",
+                    style: 'width: 33%;'
+        %>
+      <% end %>
+    </div>
   </div>
-  <%= link_to 'Start VPN',
-              vpn_start_path,
-              method: :post,
-              class: 'btn btn-primary'
-  %>
-  <%= link_to 'Restart VPN',
-              vpn_restart_path,
-              method: :post,
-              class: 'btn btn-primary'
-  %>
-  <%= link_to 'Stop VPN',
-              vpn_stop_path,
-              method: :post,
-              class: 'btn btn-danger'
-  %>
 </div>
