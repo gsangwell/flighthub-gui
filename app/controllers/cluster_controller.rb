@@ -9,6 +9,10 @@ class ClusterController < ApplicationController
     @active = vpn_status
   end
 
+  def restart
+    run_shell_command("shutdown -r +1 'Reboot requested via web interface'")
+  end
+
   private
 
   def appliance_information
