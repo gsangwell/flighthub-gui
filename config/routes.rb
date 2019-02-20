@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     get 'network', to: 'network#index'
     post 'network/edit', to: 'network#edit'
 
-    get 'vpn', to: 'vpn#index'
     post 'vpn/start', to: 'vpn#start'
     post 'vpn/stop', to: 'vpn#stop'
     post 'vpn/restart', to: 'vpn#restart'
