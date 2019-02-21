@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post 'ssh/delete', to: 'keys#delete'
 
     get 'network', to: 'network#index'
+    post 'network/edit', to: 'network#edit'
 
     delete  '/logout',  to: 'sessions#destroy'
 
