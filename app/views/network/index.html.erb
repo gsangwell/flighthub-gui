@@ -2,13 +2,13 @@
   <%= form_for :network,
                as: :post,
                url: network_edit_path,
-               html: { id: 'network-var-edit-form' } do |f| %>
+               html: { id: 'network-var-edit-form', class: 'w-50' } do |f| %>
     <div class="table-responsive">
       <h1 class="text-center">Manage Network Variables</h1>
-      <table class="table table-bordered center w-75">
+      <table class="table table-bordered center">
         <thead>
           <tr>
-            <th>Variable</th>
+            <th style="width: 30%;">Variable</th>
             <th>Value</th>
           </tr>
         </thead>
@@ -34,7 +34,7 @@
     </div>
     <%= f.submit "Submit Changes",
                  disable_with: 'Saving...',
-                 class: 'btn btn-primary btn-block center w-75 mb-3'
+                 class: 'btn btn-primary btn-block center mb-3'
     %>
   <% end %>
 </div>
