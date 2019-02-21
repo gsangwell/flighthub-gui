@@ -1,6 +1,6 @@
 class NetworkController < ApplicationController
   def index
-    @lines = file_data
+    @file_lines = file_data
   end
 
   def edit
