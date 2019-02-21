@@ -1,40 +1,38 @@
-<div class="center">
-  <%= form_for :network,
-               as: :post,
-               url: network_edit_path,
-               html: { id: 'network-var-edit-form', class: 'w-50 center' } do |f| %>
-    <div class="table-responsive">
-      <h1 class="text-center">Manage Network Variables</h1>
-      <table class="table table-bordered center">
-        <thead>
+<%= form_for :network,
+             as: :post,
+             url: network_edit_path,
+             html: { id: 'network-var-edit-form', class: 'w-50 center' } do |f| %>
+  <div class="table-responsive">
+    <h1 class="text-center">Manage Network Variables</h1>
+    <table class="table table-bordered center">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Variable</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lines.each do |line| %>
+          <% next unless line.start_with?('export') %>
+
+          <% content = line.split("export")[1].split("=") %>
+          <% variable = content[0] %>
+          <% value = content[1].split('"')[1] %>
+
           <tr>
-            <th style="width: 30%;">Variable</th>
-            <th>Value</th>
+            <td>
+              <%= variable %>
+            </td>
+            <td>
+              <%= f.text_field variable, class: 'form-control', value: value %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @lines.each do |line| %>
-            <% next unless line.start_with?('export') %>
-
-            <% content = line.split("export")[1].split("=") %>
-            <% variable = content[0] %>
-            <% value = content[1].split('"')[1] %>
-
-            <tr>
-              <td>
-                <%= variable %>
-              </td>
-              <td>
-                <%= f.text_field variable, class: 'form-control', value: value %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <%= f.submit "Submit Changes",
-                 disable_with: 'Saving...',
-                 class: 'btn btn-primary btn-block center mb-3'
-    %>
-  <% end %>
-</div>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= f.submit "Submit Changes",
+               disable_with: 'Saving...',
+               class: 'btn btn-primary btn-block center mb-3'
+  %>
+<% end %>
