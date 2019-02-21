@@ -17,6 +17,10 @@
          href="<%= ssh_path %>">
         SSH Key Management
       </a>
+      <a class="nav-item nav-link <%= 'active' if current_page?(network_path) %>"
+         href="<%= network_path %>">
+         Network Management
+      </a>
       <%= link_to "(#{current_user.username}) Sign Out",
           logout_path,
           method: :delete,
