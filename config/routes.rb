@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   constraints Clearance::Constraints::SignedIn.new do
-    get 'cluster/index'
+    get 'cluster', to: 'cluster#index'
+    post 'cluster/restart', to: 'cluster#restart'
+    post 'cluster/stop', to: 'cluster#stop'
 
     get 'users', to: 'users#index'
     post 'users', to: 'users#create'
@@ -15,6 +17,10 @@ Rails.application.routes.draw do
 
     get 'network', to: 'network#index'
     post 'network/edit', to: 'network#edit'
+
+    post 'vpn/start', to: 'vpn#start'
+    post 'vpn/stop', to: 'vpn#stop'
+    post 'vpn/restart', to: 'vpn#restart'
 
     delete  '/logout',  to: 'sessions#destroy'
 

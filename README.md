@@ -50,3 +50,33 @@
 
 12. Access the application at its public IP and use the details for the user
     you created in step 7 to log in
+
+## Bolt-Ons
+
+A Bolt-On is an optional part of the web interface configuration. These can be enabled on an individual basis in one of two ways:
+
+1. Within the `rails-admin` interface
+
+   1.1. Navigate to the `Bolt ons` section
+
+   For each Bolt-On you wish to enable:
+
+   1.2. Click the edit icon next to the database entry
+
+   1.3. Click the `Enabled` checkbox
+
+   1.4. Save the entry
+
+2. Via the rails console
+
+   2.1. Enter the rails console using `RAILS_ENV=production rails c`
+
+   For each Bolt-On you wish to enable:
+
+   2.2. Enable using:
+
+    ```
+      bolt_on = BoltOn.find_by(name: '<NAME_OF_BOLT_ON>')
+      bolt_on.enabled = true
+      bolt_on.save!
+    ```

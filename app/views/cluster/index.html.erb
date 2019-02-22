@@ -1,3 +1,18 @@
-<div>
-  <%= @content.html_safe %>
+<div class="row center mt-3" style="width: 90%;">
+  <div class="card" style="width: 70%;">
+    <h5 class="card-header">Information</h5>
+    <div class="card-body">
+      <% if @content %>
+        <%= @content.html_safe %>
+      <% else %>
+        There is no appliance information to display.
+      <% end %>
+    </div>
+  </div>
+  <div class="col">
+    <div>
+      <%= render 'machine_controls' %>
+      <%= render 'vpn_controls' %>
+    </div>
+  </div>
 </div>
