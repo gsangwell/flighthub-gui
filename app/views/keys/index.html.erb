@@ -1,7 +1,7 @@
 <div>
   <div style="text-align: center;">
     <h1> Add New SSH Key </h1>
-    <%= form_for(:new_key, url: ssh_path, html: { class: 'creation-form' }) do |f| %>
+    <%= form_for(:new_key, url: ssh_path, html: { class: 'creation-form styled-form' }) do |f| %>
       <div class="row mb-1">
         <div class="col-sm-1 form-label">
           <%= f.label :key, 'Key:' %>
