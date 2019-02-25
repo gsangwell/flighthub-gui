@@ -1,8 +1,8 @@
 class NetworkController < ApplicationController
   def index
-    @file_lines = file_data
-    @internal_vars = @file_lines.select { |l| l.include? "INTERNAL" }
-    @external_vars = @file_lines.select { |l| l.include? "EXTERNAL" }
+    file_lines = file_data
+    @internal_vars = file_lines.select { |l| l.include? "INTERNAL" }
+    @external_vars = file_lines.select { |l| l.include? "EXTERNAL" }
   end
 
   def edit
