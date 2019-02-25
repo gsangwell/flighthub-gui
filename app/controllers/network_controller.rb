@@ -9,7 +9,7 @@ class NetworkController < ApplicationController
     tmp = Tempfile.new("temp_vars")
 
     file_data.each do |line|
-      if line.start_with?('export')
+      if line.include?("INTERNAL") || line.include?("EXTERNAL")
         content = line.split("export")[1].split("=")
         variable = content[0]
         tail = content[1].split('"')[2]
