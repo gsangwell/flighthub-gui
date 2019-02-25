@@ -45,7 +45,7 @@ gem 'turbolinks', '~> 5'
 gem 'commonmarker'
 gem 'dotenv-rails'
 
-gem 'bootstrap', '~> 4.1.2'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails' # Required for Bootstrap.
 
 group :development, :test do
