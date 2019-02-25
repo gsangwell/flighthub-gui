@@ -37,6 +37,10 @@
 
    8.2. Load schema `RAILS_ENV=production bin/rails db:schema:load`
 
+   8.3. Run database migrations `RAILS_ENV=production bin/rails db:migrate`
+
+   8.4. Run data migrations `RAILS_ENV=production bin/rails data:migrate`
+
 9. Create an initial user
 
    9.1. Enter the rails console using `RAILS_ENV=production rails c`
