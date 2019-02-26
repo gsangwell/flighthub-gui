@@ -10,11 +10,19 @@ class ClusterController < ApplicationController
   end
 
   def restart
-    run_shell_command("shutdown -r +1 'Reboot requested via web interface'")
+    if run_shell_command("shutdown -r +1 'Reboot requested via web interface'")
+      flash[:success] = 'Restarting machine'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to restart the machine'
+    end
   end
 
   def stop
-    run_shell_command("shutdown -h +1 'Shutdown requested via web interface'")
+    if run_shell_command("shutdown -h +1 'Shutdown requested via web interface'")
+      flash[:success] = 'Stopping the machine'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to stop the machine'
+    end
   end
 
   private
