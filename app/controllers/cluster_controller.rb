@@ -15,6 +15,8 @@ class ClusterController < ApplicationController
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the machine'
     end
+
+    redirect_to cluster_path
   end
 
   def stop
@@ -23,6 +25,8 @@ class ClusterController < ApplicationController
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the machine'
     end
+
+    redirect_to cluster_path
   end
 
   private
