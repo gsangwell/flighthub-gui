@@ -5,35 +5,39 @@
                 id: 'network-var-edit-form',
                 class: 'w-50 center'
              } do |f| %>
-  <div class="table-responsive">
-    <h1 class="text-center">Manage Network Variables</h1>
-    <table class="table table-bordered center">
-      <thead>
-        <tr>
-          <th style="width: 30%;">Variable</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @file_lines.each do |line| %>
-          <% next unless line.start_with?('export') %>
-
-          <% content = line.split("export")[1].split("=") %>
-          <% variable = content[0] %>
-          <% value = content[1].split('"')[1] %>
-
+  <h1 class="text-center">Manage Network Variables</h1>
+  <% [@internal_vars, @external_vars].each do |vars| %>
+    <div class="table-responsive">
+      <h2 class="text-center">
+        <%= vars.first.include?("INTERNAL") ? 'Internal' : 'External' %>
+      </h2>
+      <table class="table table-bordered center">
+        <thead>
           <tr>
-            <td>
-              <code><%= variable %></code>
-            </td>
-            <td>
-              <%= f.text_field variable, class: 'form-control', value: value %>
-            </td>
+            <th style="width: 30%;">Variable</th>
+            <th>Value</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          <% vars.each do |var| %>
+            <% content = var.split("export")[1].split("=") %>
+            <% variable = content[0] %>
+            <% value = content[1].split('"')[1] %>
+
+            <tr>
+              <td>
+                <code><%= variable %></code>
+              </td>
+              <td>
+                <%= f.text_field variable, class: 'form-control', value: value %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  <% end %>
   <%= f.submit "Submit Changes",
                disable_with: 'Saving...',
                class: 'btn btn-primary btn-block center mb-3' %>

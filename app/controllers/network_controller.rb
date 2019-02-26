@@ -1,13 +1,15 @@
 class NetworkController < ApplicationController
   def index
-    @file_lines = file_data
+    file_lines = file_data
+    @internal_vars = file_lines.select { |l| l.include? "INTERNAL" }
+    @external_vars = file_lines.select { |l| l.include? "EXTERNAL" }
   end
 
   def edit
     tmp = Tempfile.new("temp_vars")
 
     file_data.each do |line|
-      if line.start_with?('export')
+      if line.include?("INTERNAL") || line.include?("EXTERNAL")
         content = line.split("export")[1].split("=")
         variable = content[0]
         tail = content[1].split('"')[2]
