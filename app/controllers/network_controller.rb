@@ -1,4 +1,9 @@
 class NetworkController < ApplicationController
+
+  delegate :network_variables,
+           :network_setup,
+           to: 'Rails.application.config'
+
   def index
     file_lines = file_data
     @internal_vars = file_lines.select { |l| l.include? "INTERNAL" }
