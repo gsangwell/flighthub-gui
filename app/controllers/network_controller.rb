@@ -27,7 +27,7 @@ class NetworkController < ApplicationController
 
     tmp.close
 
-    if run_shell_command("cp --no-preserve=mode,ownership #{tmp.path} #{Rails.application.config.network_variables}")
+    if run_shell_command("cp --no-preserve=mode,ownership #{tmp.path} #{network_variables}")
       flash[:success] = 'Network configuration successfully modified'
     else
       flash[:danger] = 'Encountered an error whilst trying to modify the network configuration'
