@@ -1,12 +1,12 @@
 <% if signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-dark mb-1">
+  <nav class="navbar navbar-expand-lg navbar-dark mb-1 sticky-top">
     <a class="navbar-brand" href="<%= root_path %>">
       <%= image_tag 'moosebird.png', size: '40x25', class: 'mb-1' %>
       <%= Rails.application.config.application_name %> Appliance
     </a>
     <div class="navbar-nav">
-      <a class="nax-item nav-link <%= 'active' if current_page?(cluster_index_path) %>"
-         href="<%= cluster_index_path %>">
+      <a class="nax-item nav-link <%= 'active' if current_page?(cluster_path) %>"
+         href="<%= cluster_path %>">
          Appliance Information
       </a>
       <a class="nav-item nav-link <%= 'active' if current_page?(users_path) %>"
@@ -16,6 +16,10 @@
       <a class="nav-item nav-link <%= 'active' if current_page?(ssh_path) %>"
          href="<%= ssh_path %>">
         SSH Key Management
+      </a>
+      <a class="nav-item nav-link <%= 'active' if current_page?(network_path) %>"
+         href="<%= network_path %>">
+         Network Management
       </a>
       <%= link_to "(#{current_user.username}) Sign Out",
           logout_path,
