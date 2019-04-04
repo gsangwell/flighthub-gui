@@ -44,3 +44,13 @@ function enableTerminal() {
 }
 
 document.addEventListener('turbolinks:load', enableTerminal)
+
+function unmountTerminal() {
+  if (!($(".console").length > 0)) {
+    return;
+  }
+
+  ReactDOM.unmountComponentAtNode(document.querySelector('#flight-terminal-container'));
+}
+
+document.addEventListener('turbolinks:before-visit', unmountTerminal)
