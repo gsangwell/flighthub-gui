@@ -6,8 +6,7 @@ function enableTerminal() {
   // FlightTutorials needs to be told the URL to the terminal server.
   // This obviously changes from one application to another, so Overware
   // will need to specify it.
-  const socketIOUrl = "http://<%= Rails.application.config.terminal_ip %>:25288/pty";
-  console.log(socketIOUrl)
+  const socketIOUrl = "//:25288/pty";
   // And the socket IO path.  We should perhaps have FlightTutorials set
   // as the default.
   const socketIOPath = "/terminal-service/socket.io";
