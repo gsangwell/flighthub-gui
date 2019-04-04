@@ -1,0 +1,11 @@
+<%= content_for :js do %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"
+      crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"
+      crossorigin></script>
+  <%= javascript_include_tag "flight-tutorials-client.min.js" %>
+<% end %>
+
+<div class="container">
+  <div id="flight-terminal-container"></div>
+</div>
