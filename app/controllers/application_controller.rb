@@ -15,4 +15,5 @@ class ApplicationController < ActionController::Base
   def bolt_on_enabled(name)
     BoltOn.find_by(name: name).enabled?
   end
+  helper_method :bolt_on_enabled
 end
