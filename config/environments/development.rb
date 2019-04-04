@@ -64,4 +64,5 @@ Rails.application.configure do
   config.ssh_keys = ENV['SSH_KEYS_FILE_PATH']
   config.network_variables = ENV['NETWORK_VARIABLES_FILE_PATH']
   config.network_setup = ENV['NETWORK_SETUP_SCRIPT_FILE_PATH']
+  config.terminal_ip = ENV['TERMINAL_IP']
 end
