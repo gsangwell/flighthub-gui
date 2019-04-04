@@ -21,6 +21,12 @@
          href="<%= network_path %>">
          Network Management
       </a>
+      <% if bolt_on_enabled('Terminal') %>
+        <a class="nav-item nav-link <%= 'active' if current_page?(console_path) %>"
+           href="<%= console_path %>">
+           Console
+        </a>
+      <% end %>
       <%= link_to "(#{current_user.username}) Sign Out",
           logout_path,
           method: :delete,
