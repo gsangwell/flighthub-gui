@@ -84,3 +84,25 @@ A Bolt-On is an optional part of the web interface configuration. These can be e
       bolt_on.enabled = true
       bolt_on.save!
     ```
+
+## Embedded Terminal
+
+1. Ensure at least Node.js v8.12 is installed
+
+  **** Install [directly](https://nodejs.org/en/download/)
+
+  * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
+
+2. Clone the `develop` branch of the `flight-terminal-service` repo found [here](https://github.com/alces-software/flight-terminal-service/tree/develop)
+
+3. Adjust interface value found within `lib/config.json` as necessary
+
+  * Set to `0.0.0.0` if you want it to be open to all connections
+
+4. Run the service using `INTEGRATION=no-auth-localhost yarn run start`
+
+5. Ensure the `TERMINAL_IP` environment variable is set within the Overware `.env` file
+
+6. Restart the rails server if it is running
+
+7. Enable the `Terminal` Bolt-On
