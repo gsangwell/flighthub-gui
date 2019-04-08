@@ -1,0 +1,23 @@
+<div>
+  <div style="text-align: center;">
+    <h1> Asset Information </h1>
+  </div>
+  <div style="text-align: center">
+    <% if @assets and not @assets.empty? %>
+      <% @assets.each do |type, assets| %>
+        <div class='card'>
+          <h2> <%= type %> </h2>
+          <p>
+            <% assets.each do |a| %>
+              <span style="white-space: nowrap">
+                <%= link_to a, assets_path + '/' + a %>
+              </span>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      No asset information found.
+    <% end %>
+  <div>
+</div>
