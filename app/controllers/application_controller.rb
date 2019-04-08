@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  require 'commonmarker'
   include Clearance::Controller
   require 'open3'
 
@@ -25,5 +26,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_unless_bolt_on(bolt_on)
     redirect_to root_path unless bolt_on_enabled(bolt_on)
+  end
+
+  def render_as_markdown(html)
+    CommonMarker.render_html(html, :DEFAULT, [:table])
   end
 end
