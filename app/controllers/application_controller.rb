@@ -31,4 +31,6 @@ class ApplicationController < ActionController::Base
   def render_as_markdown(html)
     CommonMarker.render_html(html, :DEFAULT, [:table])
   end
+
+  helper_method :bolt_on_enabled
 end

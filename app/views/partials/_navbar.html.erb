@@ -28,6 +28,12 @@
             method: :get
         %>
       <% end %>
+      <% if bolt_on_enabled('Assets') %>
+        <a class="nav-item nav-link <%= 'active' if current_page?(assets_path) %>"
+           href="<%= assets_path %>">
+           Asset Information
+        </a>
+      <% end %>
       <%= link_to "(#{current_user.username}) Sign Out",
           logout_path,
           method: :delete,
