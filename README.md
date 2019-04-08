@@ -32,7 +32,7 @@
 
     * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
 
-5. Install and configure `Flight Terminal Service` as describe [here](https://github.com/alces-software/flight-terminal-service)
+5. Install and configure `Flight Terminal Service` as described [here](https://github.com/alces-software/flight-terminal-service)
 
 6. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
