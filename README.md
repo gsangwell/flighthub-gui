@@ -26,37 +26,53 @@
 
    3.2. Install `yarn` itself using `yum install yarn`
 
-4. Clone this repo using `git clone https://github.com/alces-software/overware.git`
+4. Ensure Node.js v8.12 is installed
 
-5. Copy the example environment variables file using `cp '.env.example', '.env'`
+   * Install [directly](https://github.com/nodesource/distributions/blob/master/README.md#rpm)
 
-6. Edit `.env` as required to use valid environment variables. Some of these 
-   are only important for specific environments.
+   * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
 
-7. Install gems with `bundle install`
+5. Clone repositories 
 
-8. Prepare the database
+   5.1. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
-   8.1. Create DB `RAILS_ENV=production bin/rails db:create`
+   5.2. Clone the `master` branch of `flight-terminal-service` found [here](https://github.com/alces-software/flight-terminal-service)
 
-   8.2. Load schema `RAILS_ENV=production bin/rails db:schema:load`
+6. Copy the example environment variables file using `cp '.env.example', '.env'`
 
-   8.3. Run database migrations `RAILS_ENV=production bin/rails db:migrate`
+7. Setup necessary environment variables
 
-   8.4. Run data migrations `RAILS_ENV=production bin/rails data:migrate`
+   7.1. Edit `.env` from step 6 as required to use valid environment variables. Some of these are only important for specific environments.
 
-9. Create an initial user
+   7.2. Follow the instructions given in the "Quick start" section of `Flight Terminal Service`
 
-   9.1. Enter the rails console using `RAILS_ENV=production rails c`
+8. Install gems with `bundle install`
 
-   9.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
+9. Prepare the database
 
+   9.1. Create DB `RAILS_ENV=production bin/rails db:create`
 
-10. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
+   9.2. Load schema `RAILS_ENV=production bin/rails db:schema:load`
 
-11. Launch server using `bin/rails s -p 80 -e production`
+   9.3. Run database migrations `RAILS_ENV=production bin/rails db:migrate`
 
-12. Access the application at its public IP and use the details for the user
+   9.4. Run data migrations `RAILS_ENV=production bin/rails data:migrate`
+
+10. Create an initial user
+
+   10.1. Enter the rails console using `RAILS_ENV=production rails c`
+
+   10.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
+
+11. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
+
+12. Launch servers from their respective directories
+
+   12.1. `Overware` server via `bin/rails -s -p 80 -e production`
+
+   12.2. `Flight Terminal Service` server via `yarn run start`
+
+13. Access the application at its public IP and use the details for the user
     you created in step 7 to log in
 
 ## Bolt-Ons
@@ -88,19 +104,3 @@ A Bolt-On is an optional part of the web interface configuration. These can be e
       bolt_on.enabled = true
       bolt_on.save!
     ```
-
-## Embedded Console 
-
-1. Ensure Node.js v8.12 is installed
-
-   * Install [directly](https://github.com/nodesource/distributions/blob/master/README.md#rpm)
-
-   * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
-
-2. Clone the `master` branch of the `flight-terminal-service` repo found [here](https://github.com/alces-software/flight-terminal-service)
-
-3. Follow the instructions given in the "Quick start" section of `Flight Terminal Service`
-
-4. Run the service using `yarn run start`
-
-5. Enable the `Console` Bolt-On
