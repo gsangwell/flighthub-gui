@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
     BoltOn.find_by(name: name).enabled?
   end
   helper_method :bolt_on_enabled
+
+  def redirect_unless_bolt_on(bolt_on)
+    redirect_to root_path unless bolt_on_enabled(bolt_on)
+  end
 end
