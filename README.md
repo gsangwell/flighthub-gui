@@ -22,6 +22,10 @@
 
 3. Yarn installed
 
+   3.1. Install repo using `curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo`
+
+   3.2. Install `yarn` itself using `yum install yarn`
+
 4. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
 5. Copy the example environment variables file using `cp '.env.example', '.env'`
