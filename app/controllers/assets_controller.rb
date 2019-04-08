@@ -17,4 +17,18 @@ class AssetsController < ApplicationController
       @assets[type_list.shift] = type_list
     end
   end
+
+  def single_asset
+    redirect_unless_bolt_on('Assets')
+    @name = params[:name]
+    #TODO change command when the syntax loses the `show`
+    # (flight inventory issue #117)
+    #TODO `-f headnode` when that is implemented/for production
+    cmd = "flight inventory show document #{@name};"
+    Bundler.with_clean_env do
+      @asset_data = Open3.capture3(cmd)[0]
+    end
+
+    @content = render_as_markdown(@asset_data)
+  end
 end

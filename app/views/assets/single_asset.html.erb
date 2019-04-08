@@ -1,0 +1,10 @@
+<div class="card" style="width: 90%; margin: auto; margin-top: 2%">
+  <h2 class="card-header" style="text-align: center"><%= @name %></h2>
+  <div class="card-body">
+    <% if @content.empty? %>
+      <div style="text-align: center">Unable to display information found for this asset.</div>
+    <% else %>
+      <%= simple_format @content %>
+    <% end %>
+  </div>
+</div>
