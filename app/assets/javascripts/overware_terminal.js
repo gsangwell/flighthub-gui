@@ -1,4 +1,4 @@
-function enableTerminal() {
+$(document).on('turbolinks:load', function(){
   if (!($(".console").length > 0)) {
     return;
   }
@@ -41,9 +41,7 @@ function enableTerminal() {
   };
   const e = React.createElement;
   ReactDOM.render(e(flight_tutorials.SimpleTerminal, params), terminalContainer);
-}
-
-document.addEventListener('turbolinks:load', enableTerminal)
+});
 
 function unmountTerminal() {
   if (!($(".console").length > 0)) {
