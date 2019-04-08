@@ -32,48 +32,37 @@
 
     * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
 
-5. Clone repositories 
+5. Install and configure `Flight Terminal Service` as describe [here](https://github.com/alces-software/flight-terminal-service)
 
-    5.1. Clone this repo using `git clone https://github.com/alces-software/overware.git`
+6. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
-    5.2. Clone the `master` branch of `flight-terminal-service` found [here](https://github.com/alces-software/flight-terminal-service)
+7. Copy the example environment variables file using `cp '.env.example', '.env'`
 
-6. Copy the example environment variables file using `cp '.env.example', '.env'`
+8. Edit `.env` as required to use valid environment variables. Some of these are only important for specific environments.
 
-7. Setup necessary environment variables
+9. Install gems with `bundle install`
 
-    7.1. Edit `.env` from step 6 as required to use valid environment variables. Some of these are only important for specific environments.
+10. Prepare the database
 
-    7.2. Follow the instructions given in the "Quick start" section of `Flight Terminal Service`
+    10.1. Create DB `RAILS_ENV=production bin/rails db:create`
 
-8. Install gems with `bundle install`
+    10.2. Load schema `RAILS_ENV=production bin/rails db:schema:load`
 
-9. Prepare the database
+    10.3. Run database migrations `RAILS_ENV=production bin/rails db:migrate`
 
-    9.1. Create DB `RAILS_ENV=production bin/rails db:create`
+    10.4. Run data migrations `RAILS_ENV=production bin/rails data:migrate`
 
-    9.2. Load schema `RAILS_ENV=production bin/rails db:schema:load`
+11. Create an initial user
 
-    9.3. Run database migrations `RAILS_ENV=production bin/rails db:migrate`
+    11.1. Enter the rails console using `RAILS_ENV=production rails c`
 
-    9.4. Run data migrations `RAILS_ENV=production bin/rails data:migrate`
+    11.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
 
-10. Create an initial user
+12. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
 
-    10.1. Enter the rails console using `RAILS_ENV=production rails c`
+13. Launch server using `bin/rails -s -p 80 -e production`
 
-    10.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
-
-11. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
-
-12. Launch servers from their respective directories
-
-    12.1. `Overware` server via `bin/rails -s -p 80 -e production`
-
-    12.2. `Flight Terminal Service` server via `yarn run start`
-
-13. Access the application at its public IP and use the details for the user
-    you created in step 7 to log in
+14. Access the application at its public IP and use the details for the user you created in step 7 to log in
 
 ## Bolt-Ons
 
