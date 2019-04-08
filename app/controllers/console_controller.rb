@@ -4,6 +4,6 @@ class ConsoleController < ApplicationController
   private
 
   def check_bolt_on_is_enabled
-    redirect_to root_path unless bolt_on_enabled('Terminal')
+    redirect_to root_path unless bolt_on_enabled('Console')
   end
 end

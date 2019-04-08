@@ -85,7 +85,7 @@ A Bolt-On is an optional part of the web interface configuration. These can be e
       bolt_on.save!
     ```
 
-## Embedded Terminal
+## Embedded Console 
 
 1. Ensure at least Node.js v8.12 is installed
 
@@ -105,4 +105,4 @@ A Bolt-On is an optional part of the web interface configuration. These can be e
 
 6. Restart the rails server if it is running
 
-7. Enable the `Terminal` Bolt-On
+7. Enable the `Console` Bolt-On
