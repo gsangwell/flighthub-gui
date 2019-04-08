@@ -36,7 +36,7 @@
 
 6. Clone this repo using `git clone https://github.com/alces-software/overware.git`
 
-7. Copy the example environment variables file using `cp '.env.example', '.env'`
+7. Copy the example environment variables file using `cp '.env.example' '.env'`
 
 8. Edit `.env` as required to use valid environment variables. Some of these are only important for specific environments.
 
