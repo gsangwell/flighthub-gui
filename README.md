@@ -89,14 +89,14 @@ A Bolt-On is an optional part of the web interface configuration. These can be e
 
 1. Ensure Node.js v8.12 is installed
 
-   * Install [directly](https://nodejs.org/en/download/)
+   * Install [directly](https://github.com/nodesource/distributions/blob/master/README.md#rpm)
 
    * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
 
-2. Clone the `develop` branch of the `flight-terminal-service` repo found [here](https://github.com/alces-software/flight-terminal-service/tree/develop)
+2. Clone the `master` branch of the `flight-terminal-service` repo found [here](https://github.com/alces-software/flight-terminal-service)
 
-3. Make necessary adjustments to values within `lib/config.json`
+3. Follow the instructions given in the "Quick start" section of `Flight Terminal Service`
 
-4. Run the service using `INTEGRATION=no-auth-localhost yarn run start`
+4. Run the service using `yarn run start`
 
 5. Enable the `Console` Bolt-On
