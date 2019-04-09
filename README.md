@@ -9,7 +9,7 @@
 2. PostgreSQL 9+ installed and running. The following should achieve this for
    a CentOS machine:
 
-    * Tested using v9.2 on CentOS 7
+    _Tested using v9.2 on CentOS 7_
 
     2.1. Install using `yum install postgresql` 
 
