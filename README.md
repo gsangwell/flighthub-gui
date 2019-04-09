@@ -6,10 +6,10 @@
 1. Ensure Ruby version as specified in [`.ruby-version`](./.ruby-version) is
    installed
 
-2. PostgreSQL 9.6 installed and running. The following should achieve this for
+2. PostgreSQL 9+ installed and running. The following should achieve this for
    a CentOS machine:
 
-    2.1. Install as described [here](https://wiki.postgresql.org/wiki/YUM_Installation)
+    2.1. Install using `yum install postgresql` 
 
     2.2. Configure PostgreSQL like the following:
 
