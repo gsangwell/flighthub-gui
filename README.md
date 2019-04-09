@@ -28,9 +28,9 @@
 
 4. Yarn installed
 
-    3.1. Install repo using `curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo`
+    4.1. Install repo using `curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo`
 
-    3.2. Install `yarn` itself using `yum install yarn`
+    4.2. Install `yarn` itself using `yum install yarn`
 
 
 5. Install and configure `Flight Terminal Service` as described [here](https://github.com/alces-software/flight-terminal-service)
