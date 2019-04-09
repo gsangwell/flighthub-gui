@@ -20,17 +20,18 @@
     systemctl start postgresql
     ```
 
-3. Yarn installed
+3. Ensure Node.js v8.12 is installed
+
+    * Install [directly](https://github.com/nodesource/distributions/blob/master/README.md#rpm)
+
+    * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
+
+4. Yarn installed
 
     3.1. Install repo using `curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo`
 
     3.2. Install `yarn` itself using `yum install yarn`
 
-4. Ensure Node.js v8.12 is installed
-
-    * Install [directly](https://github.com/nodesource/distributions/blob/master/README.md#rpm)
-
-    * Install using [Node Version Manager](https://github.com/creationix/nvm#installation-and-update)
 
 5. Install and configure `Flight Terminal Service` as described [here](https://github.com/alces-software/flight-terminal-service)
 
