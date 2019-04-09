@@ -18,3 +18,6 @@
 //= require turbolinks
 //= require_tree .
 //= require textarea-autosize.js
+//= require react.min.js
+//= require react-dom.min.js
+//= require flight-tutorials-client.min.js

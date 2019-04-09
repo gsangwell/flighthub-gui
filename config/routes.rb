@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     post 'vpn/stop', to: 'vpn#stop'
     post 'vpn/restart', to: 'vpn#restart'
 
+    get 'console', to: 'console#index'
+
     delete  '/logout',  to: 'sessions#destroy'
 
     root 'cluster#index'
