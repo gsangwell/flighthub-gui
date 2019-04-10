@@ -1,7 +1,7 @@
 class VpnController < ApplicationController
   def start
     return unless bolt_on_enabled('VPN')
-    if run_shell_command("systemctl start openvpn@flightcenter")
+    if run_global_script(ENV['VPN_START'])
       flash[:success] = 'VPN started'
     else
       flash[:danger] = 'Enountered an error whilst trying to start the VPN'
@@ -12,7 +12,7 @@ class VpnController < ApplicationController
 
   def stop
     return unless bolt_on_enabled('VPN')
-    if run_shell_command("systemctl stop openvpn@flightcenter")
+    if run_global_script(ENV['VPN_STOP'])
       flash[:success] = 'VPN stopped'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the VPN'
@@ -23,7 +23,7 @@ class VpnController < ApplicationController
 
   def restart
     return unless bolt_on_enabled('VPN')
-    if run_shell_command("systemctl restart openvpn@flightcenter")
+    if run_global_script(ENV['VPN_RESTART'])
       flash[:success] = 'VPN restarted'
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the VPN'
