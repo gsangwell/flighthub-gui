@@ -2,6 +2,13 @@
   <div style="text-align: center;">
     <h1> Asset Information </h1>
   </div>
+  <div>
+    <%= form_tag assets_path, method: :get, enforce_utf8: false do  %>
+      <%= select_tag :filter_on, options_for_select([['Group', 'group'],['Type', 'type']]) %>
+      <%= text_field_tag :filter_arg %>
+      <%= submit_tag 'Filter', name: nil %>
+    <% end %>
+  </div>
   <div style="text-align: center">
     <% if @assets and not @assets.empty? %>
       <% @assets.each do |type, assets| %>
