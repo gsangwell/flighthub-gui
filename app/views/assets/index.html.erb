@@ -13,7 +13,7 @@
     <% if @assets and not @assets.empty? %>
       <% @assets.each do |type, assets| %>
         <div class='card'>
-          <h2> <%= type %> </h2>
+          <h2> <%= type.downcase %> </h2>
           <p>
             <% assets.each do |a| %>
               <span style="white-space: nowrap">
