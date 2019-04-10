@@ -8,8 +8,16 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # Deprecated and will be removed once run_global_script has been utilised
   def run_shell_command(command)
     system(command, out: File::NULL)
+  end
+
+  def run_global_script(command, *args)
+    system(
+      "bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}",
+      out: File::NULL
+    )
   end
 
   def bolt_on_enabled(name)
