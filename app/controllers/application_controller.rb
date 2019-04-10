@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
     system(command, out: File::NULL)
   end
 
+  def run_global_script(command, *args)
+    system(
+      "bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}",
+      out: File::NULL
+    )
+  end
+
   def bolt_on_enabled(name)
     BoltOn.find_by(name: name).enabled?
   end
