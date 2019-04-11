@@ -25,15 +25,15 @@ class AssetsController < ApplicationController
   def single_asset
     redirect_unless_bolt_on('Assets')
     @name = params[:name]
-    #TODO change command when the syntax loses the `show`
-    # (flight inventory issue #117)
-    #TODO `-f headnode` when that is implemented/for production
-    cmd = "flight inventory show document #{@name};"
+    cmd = "flight inventory show #{@name} -f diagram-markdown;"
     Bundler.with_clean_env do
       @asset_data = Open3.capture3(cmd)[0]
     end
-
-    @content = render_as_markdown(@asset_data)
+    if @asset_data =~ /<img\s*src=/
+      @content = @asset_data.html_safe
+    else
+      @content = render_as_markdown(@asset_data)
+    end
   end
 
   def asset_params
