@@ -22,9 +22,9 @@
         </thead>
         <tbody>
           <% vars.each do |var| %>
-            <% content = var.split("export")[1].split("=") %>
+            <% content = var.split("=") %>
             <% variable = content[0] %>
-            <% value = content[1].split('"')[1] %>
+            <% value = content[1].split("\n") %>
 
             <tr>
               <td>
