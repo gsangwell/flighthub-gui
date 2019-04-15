@@ -1,10 +1,11 @@
 <div class="card" style="width: 90%; margin: auto; margin-top: 2%">
   <h2 class="card-header" style="text-align: center"><%= @name %></h2>
   <div class="card-body">
-    <% if @content.empty? %>
-      <div style="text-align: center">Unable to display information found for this asset.</div>
-    <% else %>
+    <% if @content and not @content.empty? %>
       <%= simple_format @content %>
+    <% else %>
+      <%#= TODO improve this message by reading the command's stdout%>
+      <div style="text-align: center">Unable to display information found for this asset.</div>
     <% end %>
   </div>
 </div>
