@@ -16,6 +16,18 @@ class AssetsController < ApplicationController
     cmd = "flight inventory show #{@name} -f diagram-markdown;"
     @asset_data = execute(cmd)
     if @asset_data =~ /<img\s*src=/
+
+      asset_list = []
+      get_assets.each do |key, value|
+        asset_list.concat(value)
+      end
+
+      @asset_data.scan(/[\w-]+/).each do |w|
+        if asset_list.include?(w)
+          @asset_data[w] = view_context.link_to(w, assets_path + '/' + w)
+        end
+      end
+
       @content = @asset_data.html_safe
     else
       @content = render_as_markdown(@asset_data)
