@@ -5,9 +5,9 @@ class NetworkController < ApplicationController
            to: 'Rails.application.config'
 
   def index
-    file_lines = network_get_output
-    @internal_vars = file_lines.select { |l| l.include? "INTERNAL" }
-    @external_vars = file_lines.select { |l| l.include? "EXTERNAL" }
+    network_vars = network_get_output
+    @internal_vars = network_vars.select { |l| l.include? "INTERNAL" }
+    @external_vars = network_vars.select { |l| l.include? "EXTERNAL" }
   end
 
   def edit
