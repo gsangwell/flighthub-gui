@@ -8,12 +8,7 @@ class AssetsController < ApplicationController
       cmd = cmd + " --#{params[:filter_on]} #{params[:filter_arg]}"
     end
     @assets = {}
-    assets_list = ''
-    Bundler.with_clean_env do
-      #This ';' is neccessary to force shell execution
-      #See here: https://stackoverflow.com/a/26040994/6257573
-      assets_list = Open3.capture3(cmd + ";")[0]
-    end
+    assets_list = execute(cmd)
     assets_by_type = assets_list.split("\n#")
     assets_by_type.each do |type_list|
       next if type_list.empty?
@@ -26,9 +21,7 @@ class AssetsController < ApplicationController
     redirect_unless_bolt_on('Assets')
     @name = params[:name]
     cmd = "flight inventory show #{@name} -f diagram-markdown;"
-    Bundler.with_clean_env do
-      @asset_data = Open3.capture3(cmd)[0]
-    end
+    @asset_data = execute(cmd)
     if @asset_data =~ /<img\s*src=/
       @content = @asset_data.html_safe
     else
@@ -38,5 +31,14 @@ class AssetsController < ApplicationController
 
   def asset_params
     params.require(:asset).permit(:filter_on, :filter_arg)
+  end
+
+  private
+  # currently just returns stdout, this may need to be altered
+  def execute(cmd)
+    #This ';' is neccessary to force shell execution
+    #See here: https://stackoverflow.com/a/26040994/6257573
+    cmd = cmd + ';' unless cmd.match(/;$/)
+    Bundler.with_clean_env { @asset_data = Open3.capture3(cmd)[0] }
   end
 end
