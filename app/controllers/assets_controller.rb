@@ -32,7 +32,7 @@ class AssetsController < ApplicationController
     #This ';' is neccessary to force shell execution
     #See here: https://stackoverflow.com/a/26040994/6257573
     cmd = cmd + ';' unless cmd.match(/;$/)
-    Bundler.with_clean_env { @asset_data = Open3.capture3(cmd)[0] }
+    Bundler.with_clean_env { Open3.capture3(cmd)[0] }
   end
 
   #TODO potentially implement caching to prevent unnecssarily re-executing
