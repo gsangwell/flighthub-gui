@@ -57,6 +57,11 @@ class NetworkController < ApplicationController
     out.lines.map
   end
 
+  def network_show_output
+    out, err, status = run_global_script(ENV['NETWORK_SHOW'])
+    out.lines.map
+  end
+
   def file_data
     IO.binread(Rails.application.config.network_variables).lines.map
   end
