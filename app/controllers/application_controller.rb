@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Clearance::Controller
+  require 'open3'
 
   def authenticate(params)
     User.authenticate(
@@ -14,10 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def run_global_script(command, *args)
-    system(
-      "bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}",
-      out: File::NULL
-    )
+    Open3.capture3("bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}")
   end
 
   def bolt_on_enabled(name)
