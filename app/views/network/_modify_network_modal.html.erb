@@ -1,0 +1,46 @@
+<div id="<%= name %>_network_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title center"><%= name %> Network</h4>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <h5 class="text-center"> Modify Network Variables </h5>
+          <br>
+          <table class="table table-bordered center">
+            <thead>
+              <tr>
+                <th style="width: 30%;">Variable</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @network_vars.select { |v| v.include?(name.upcase) }.each do |var| %>
+                <% content = var.split("=") %>
+                <% variable = content[0] %>
+                <% value = content[1].split("\n") %>
+
+                <tr>
+                  <td>
+                    <code><%= variable %></code>
+                  </td>
+                  <td>
+                    <%= f.text_field variable, class: 'form-control', value: value %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <%= f.submit "Submit Changes",
+                     disable_with: 'Saving...',
+                     class: 'btn btn-primary btn-block center mb-3' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+      </div>
+    </div>
+  </div>
+</div>
