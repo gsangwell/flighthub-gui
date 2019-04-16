@@ -1,7 +1,6 @@
 class NetworkController < ApplicationController
 
   delegate :network_variables,
-           :network_setup,
            to: 'Rails.application.config'
 
   def index
