@@ -5,9 +5,8 @@ class NetworkController < ApplicationController
            to: 'Rails.application.config'
 
   def index
-    network_vars = network_get_output
-    @internal_vars = network_vars.select { |l| l.include? "INTERNAL" }
-    @external_vars = network_vars.select { |l| l.include? "EXTERNAL" }
+    @network_vars = network_get_output
+    @networks = network_show_output
   end
 
   def edit
@@ -59,7 +58,7 @@ class NetworkController < ApplicationController
 
   def network_show_output
     out, err, status = run_global_script(ENV['NETWORK_SHOW'])
-    out.lines.map
+    out.split("\n\n").map { |n| n.split("\n") }
   end
 
   def file_data
