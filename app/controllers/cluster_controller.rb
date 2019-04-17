@@ -44,7 +44,7 @@ class ClusterController < ApplicationController
   end
 
   def vpn_status
-    run_shell_command("systemctl is-active --quiet openvpn@flightcenter")
+    run_global_script(ENV['VPN_STATUS'])[2].success?
   end
 
   def vpn_name
