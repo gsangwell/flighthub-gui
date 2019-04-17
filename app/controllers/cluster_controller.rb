@@ -3,10 +3,13 @@ class ClusterController < ApplicationController
 
   def index
     #BoltOns
-    @vpn = bolt_on_enabled('VPN')
+    @vpn = {
+      enabled: bolt_on_enabled('VPN'),
+      status: vpn_status,
+      name: vpn_name[0]
+    }
 
     @content = appliance_information
-    @active = vpn_status
   end
 
   def restart
@@ -41,6 +44,10 @@ class ClusterController < ApplicationController
   end
 
   def vpn_status
-    run_shell_command("systemctl is-active --quiet openvpn@flightcenter")
+    run_global_script(ENV['VPN_STATUS'])[2].success?
+  end
+
+  def vpn_name
+    run_global_script(ENV['VPN_NAME'])
   end
 end
