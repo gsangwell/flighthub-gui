@@ -16,7 +16,7 @@
           <h2> <%= type.downcase %> </h2>
           <p>
             <% assets.each do |a| %>
-              <span style="white-space: nowrap">
+              <span class="asset-name">
                 <%= link_to a, assets_path + '/' + a %>
               </span>
             <% end %>
@@ -26,5 +26,5 @@
     <% else %>
       No asset information found.
     <% end %>
-  <div>
+  </div>
 </div>
