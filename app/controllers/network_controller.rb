@@ -44,6 +44,26 @@ class NetworkController < ApplicationController
     redirect_to network_path
   end
 
+  def add_ssh_service
+    if run_global_script(ENV['SSH_ENABLE'])[2].success?
+      flash[:success] = 'SSH enabled on the external interface'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to enable SSH'
+    end
+
+    redirect_to network_path
+  end
+
+  def remove_ssh_service
+    if run_global_script(ENV['SSH_DISABLE'])[2].success?
+      flash[:success] = 'SSH disabled on the external interface'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to disable SSH'
+    end
+
+    redirect_to network_path
+  end
+
   private
 
   def network_params
