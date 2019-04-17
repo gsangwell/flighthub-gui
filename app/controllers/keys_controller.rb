@@ -2,12 +2,15 @@ class KeysController < ApplicationController
   require 'fileutils'
   require 'tempfile'
 
+  delegate :ssh_keys,
+           to: 'Rails.application.config'
+
   def index
     @ssh_keys = file_data
   end
 
   def create
-    if run_global_script(ENV['SSH_ADD'], Rails.application.config.ssh_keys, new_key)[2].success?
+    if run_global_script(ENV['SSH_ADD'], ssh_keys, new_key)[2].success?
       flash[:success] = 'SSH key successfully added'
     else
       flash[:danger] = 'Encountered an error whilst trying to add the SSH key'
@@ -17,7 +20,7 @@ class KeysController < ApplicationController
   end
 
   def delete
-    if run_global_script(ENV['SSH_REMOVE'], Rails.application.config.ssh_keys, "'#{params[:key]}'")[2].success?
+    if run_global_script(ENV['SSH_REMOVE'], ssh_keys, "'#{params[:key]}'")[2].success?
       flash[:success] = 'SSH key successfully removed'
     else
       flash[:danger] = 'Encountered an error whilst trying to remove the SSH key'
@@ -29,7 +32,7 @@ class KeysController < ApplicationController
   private
 
   def file_data
-    run_global_script(ENV['SSH_GET'], Rails.application.config.ssh_keys)[0].lines.map
+    run_global_script(ENV['SSH_GET'], ssh_keys)[0].lines.map
   end
 
   def new_key
