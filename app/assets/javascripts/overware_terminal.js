@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function(){
   // FlightTutorials needs to be told the URL to the terminal server.
   // This obviously changes from one application to another, so Overware
   // will need to specify it.
-  const socketIOUrl = "//:25288/pty";
+  const socketIOUrl = "///pty";
   // And the socket IO path.  We should perhaps have FlightTutorials set
   // as the default.
   const socketIOPath = "/terminal-service/socket.io";
