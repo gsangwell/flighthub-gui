@@ -1,32 +1,40 @@
 <% content_for(:title) { 'Network Management' } %>
 
-<%= form_for :network,
-             as: :post,
-             url: network_edit_path,
-             html: {
-                id: 'network-var-edit-form',
-                class: 'w-50 center'
-             } do |f| %>
-  <br>
-  <% @networks.each do |network| %>
-    <div>
-      <div class="card d-flex center">
-        <div class="card-header">
-          <% network_name = network.shift.split(' ')[1] %>
-          <h5 style="display: inline-block"><%= network_name %> Network</h5>
-          <%= link_to raw('<i class="fa fa-pencil fa-pull-right mt-1"></i>'),
-                      "##{network_name}_network_modal",
-                      "data-toggle": 'modal'
-          %>
-        </div>
-        <div class="card-body">
-          <% network.each do |variable| %>
-            <%= CommonMarker.render_html(variable, :DEFAULT, [:table]).html_safe %>
-          <% end %>
+<div class="row center mt-3" style="width: 90%;">
+  <%= form_for :network,
+               as: :post,
+               url: network_edit_path,
+               html: {
+                  id: 'network-var-edit-form',
+                  class: 'center',
+                  style: 'width: 70%;'
+               } do |f| %>
+    <% @networks.each do |network| %>
+      <div>
+        <div class="card d-flex center">
+          <div class="card-header">
+            <% network_name = network.shift.split(' ')[1] %>
+            <h5 style="display: inline-block"><%= network_name %> Network</h5>
+            <%= link_to raw('<i class="fa fa-pencil fa-pull-right mt-1"></i>'),
+                        "##{network_name}_network_modal",
+                        "data-toggle": 'modal'
+            %>
+          </div>
+          <div class="card-body">
+            <% network.each do |variable| %>
+              <%= CommonMarker.render_html(variable, :DEFAULT, [:table]).html_safe %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <br>
-    <%= render 'network/modify_network_modal', name: network_name, f: f %>
+      <br>
+      <%= render 'network/modify_network_modal', name: network_name, f: f %>
+    <% end %>
   <% end %>
-<% end %>
+
+  <div class="col">
+    <div>
+      <%= render 'external_ssh_controls' %>
+    </div>
+  </div>
+</div>
