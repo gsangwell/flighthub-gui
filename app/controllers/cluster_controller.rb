@@ -13,7 +13,7 @@ class ClusterController < ApplicationController
   end
 
   def restart
-    if run_shell_command("shutdown -r +1 'Reboot requested via web interface'")
+    if run_global_script(ENV['POWER_RESTART'])[2].success?
       flash[:success] = 'Restarting machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the machine'
@@ -23,7 +23,7 @@ class ClusterController < ApplicationController
   end
 
   def stop
-    if run_shell_command("shutdown -h +1 'Shutdown requested via web interface'")
+    if run_global_script(ENV['POWER_OFF'])[2].success?
       flash[:success] = 'Stopping the machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the machine'
