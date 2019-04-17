@@ -3,10 +3,13 @@ class ClusterController < ApplicationController
 
   def index
     #BoltOns
-    @vpn = bolt_on_enabled('VPN')
+    @vpn = {
+      enabled: bolt_on_enabled('VPN'),
+      status: vpn_status,
+      name: vpn_name[0]
+    }
 
     @content = appliance_information
-    @active = vpn_status
   end
 
   def restart

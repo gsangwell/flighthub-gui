@@ -1,10 +1,10 @@
-<% if @vpn %>
+<% if @vpn[:enabled] %>
   <div class="card d-flex center mb-2">
     <h5 class="card-header">VPN Management</h5>
     <div class="card-body">
-      <h5 class="card-title <%= @active ? 'text-success' : 'text-danger' %>">
+      <h5 class="card-title <%= @vpn[:status] ? 'text-success' : 'text-danger' %>">
         <i class="fa fa-circle mr-2" aria-hidden="true"></i>
-        <%= @active ? 'Active' : 'Inactive' %>
+        <%= @vpn[:name] %>
       </h5>
       <div class="btn-group d-flex">
         <% ['start', 'restart'].each do |action| %>
