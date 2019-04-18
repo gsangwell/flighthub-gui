@@ -1,6 +1,4 @@
 class ClusterController < ApplicationController
-  require 'commonmarker'
-
   def index
     #BoltOns
     @vpn = {
@@ -39,7 +37,7 @@ class ClusterController < ApplicationController
     file_data = IO.binread(file) if File.exist? file
 
     if file_data
-      CommonMarker.render_html(file_data, :DEFAULT, [:table])
+      render_as_markdown(file_data)
     end
   end
 

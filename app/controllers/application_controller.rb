@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   include Clearance::Controller
+
+  require 'commonmarker'
   require 'open3'
+
+  helper_method :bolt_on_enabled
 
   def authenticate(params)
     User.authenticate(
@@ -21,5 +25,12 @@ class ApplicationController < ActionController::Base
   def bolt_on_enabled(name)
     BoltOn.find_by(name: name).enabled?
   end
-  helper_method :bolt_on_enabled
+
+  def redirect_unless_bolt_on(bolt_on)
+    redirect_to root_path unless bolt_on_enabled(bolt_on)
+  end
+
+  def render_as_markdown(html)
+    CommonMarker.render_html(html, :DEFAULT, [:table])
+  end
 end

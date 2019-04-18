@@ -96,3 +96,9 @@ A Bolt-On is an optional part of the web interface configuration. These can be e
       bolt_on.enabled = true
       bolt_on.save!
     ```
+### Assets
+
+Prerequisites:
+
+* [Flight Inventory](https://github.com/openflighthpc/flight-inventory) installed
+* [Flight Inventory Diagrams](https://github.com/alces-software/flight-inventory-diagrams) plugin installed

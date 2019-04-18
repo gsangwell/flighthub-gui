@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
     get 'console', to: 'console#index'
 
+    get 'assets', to: 'assets#index'
+    get 'assets/:name', to: 'assets#single_asset'
+
     delete  '/logout',  to: 'sessions#destroy'
 
     root 'cluster#index'
