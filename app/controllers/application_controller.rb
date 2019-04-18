@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-  require 'commonmarker'
   include Clearance::Controller
+
+  require 'commonmarker'
   require 'open3'
 
   helper_method :bolt_on_enabled
