@@ -1,16 +1,17 @@
 class ClusterController < ApplicationController
-  require 'commonmarker'
-
   def index
     #BoltOns
-    @vpn = bolt_on_enabled('VPN')
+    @vpn = {
+      enabled: bolt_on_enabled('VPN'),
+      status: vpn_status,
+      name: vpn_name[0]
+    }
 
     @content = appliance_information
-    @active = vpn_status
   end
 
   def restart
-    if run_shell_command("shutdown -r +1 'Reboot requested via web interface'")
+    if run_global_script(ENV['POWER_RESTART'])[2].success?
       flash[:success] = 'Restarting machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the machine'
@@ -20,7 +21,7 @@ class ClusterController < ApplicationController
   end
 
   def stop
-    if run_shell_command("shutdown -h +1 'Shutdown requested via web interface'")
+    if run_global_script(ENV['POWER_OFF'])[2].success?
       flash[:success] = 'Stopping the machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the machine'
@@ -36,11 +37,15 @@ class ClusterController < ApplicationController
     file_data = IO.binread(file) if File.exist? file
 
     if file_data
-      CommonMarker.render_html(file_data, :DEFAULT, [:table])
+      render_as_markdown(file_data)
     end
   end
 
   def vpn_status
-    run_shell_command("systemctl is-active --quiet openvpn@flightcenter")
+    run_global_script(ENV['VPN_STATUS'])[2].success?
+  end
+
+  def vpn_name
+    run_global_script(ENV['VPN_NAME'])
   end
 end

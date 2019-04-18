@@ -1,0 +1,19 @@
+<div class="card d-flex center mb-2">
+  <h5 class="card-header"> Firewall Management </h5>
+  <div class="card-body">
+    <p class="card-title"> External Interface SSH </p>
+    <div class="btn-group d-flex">
+      <%= link_to 'On',
+                  firewall_add_ssh_path,
+                  class: 'btn btn-primary',
+                  method: :post
+      %>
+      <%= link_to 'Off',
+                  firewall_remove_ssh_path,
+                  class: 'btn btn-danger',
+                  method: :post,
+                  data: { confirm: 'Are you sure you wish to stop this service?' }
+      %>
+    </div>
+  </div>
+</div>

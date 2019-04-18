@@ -1,0 +1,33 @@
+<div class="center text-center" style="width: 90%;">
+  <div class="parent-div">
+    <h1 class="visible-print-inline-block"> Asset Information </h1>
+    <div class="filter-bar w-25">
+      <%= form_tag(assets_path, {method: :get, enforce_utf8: false, class: 'btn bordered'}) do  %>
+        <%= select_tag :filter_on,
+          options_for_select([['Group', 'group'], ['Type', 'type']]),
+          class: 'btn btn-bordered text-white'
+        %>
+        <%= text_field_tag :filter_arg, "", class: 'form-control-sm', style: 'width: 30%;' %>
+        <%= submit_tag 'Filter', name: nil, class: 'btn btn-bordered text-white' %>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <% if @assets and not @assets.empty? %>
+      <% @assets.each do |type, assets| %>
+        <div class='card'>
+          <h2> <%= type.downcase.capitalize %> </h2>
+          <p>
+            <% assets.each do |a| %>
+              <span class="asset-name">
+                <%= link_to a, assets_path + '/' + a %>
+              </span>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      No asset information found.
+    <% end %>
+  </div>
+</div>

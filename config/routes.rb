@@ -17,10 +17,17 @@ Rails.application.routes.draw do
 
     get 'network', to: 'network#index'
     post 'network/edit', to: 'network#edit'
+    post 'firewall/add-ssh', to: 'network#add_ssh_service'
+    post 'firewall/remove-ssh', to: 'network#remove_ssh_service'
 
     post 'vpn/start', to: 'vpn#start'
     post 'vpn/stop', to: 'vpn#stop'
     post 'vpn/restart', to: 'vpn#restart'
+
+    get 'console', to: 'console#index'
+
+    get 'assets', to: 'assets#index'
+    get 'assets/:name', to: 'assets#single_asset'
 
     delete  '/logout',  to: 'sessions#destroy'
 
