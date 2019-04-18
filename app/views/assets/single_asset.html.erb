@@ -2,7 +2,7 @@
   <h2 class="card-header" style="text-align: center"><%= @name %></h2>
   <div class="card-body">
     <% if @content and not @content.empty? %>
-      <%= simple_format @content %>
+      <%= @content.html_safe %>
     <% else %>
       <div style="text-align: center">Unable to display information for this asset.</div>
     <% end %>
