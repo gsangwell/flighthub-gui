@@ -4,8 +4,7 @@
     <% if @content and not @content.empty? %>
       <%= simple_format @content %>
     <% else %>
-      <%#= TODO improve this message by reading the command's stdout%>
-      <div style="text-align: center">Unable to display information found for this asset.</div>
+      <div style="text-align: center">Unable to display information for this asset.</div>
     <% end %>
   </div>
 </div>
