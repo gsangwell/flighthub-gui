@@ -5,10 +5,10 @@
       <%= form_tag(assets_path, {method: :get, enforce_utf8: false, class: 'btn bordered'}) do  %>
         <%= select_tag :filter_on,
           options_for_select([['Group', 'group'], ['Type', 'type']]),
-          class: 'btn btn-bordered'
+          class: 'btn btn-bordered text-white'
         %>
         <%= text_field_tag :filter_arg %>
-        <%= submit_tag 'Filter', name: nil, class: 'btn btn-bordered' %>
+        <%= submit_tag 'Filter', name: nil, class: 'btn btn-bordered text-white' %>
       <% end %>
     </div>
   </div>
