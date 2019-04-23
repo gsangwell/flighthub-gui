@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
   end
 
   def bolt_on_enabled(name)
-    BoltOn.find_by(name: name).enabled?
+    bolt_on = BoltOn.find_by(name: name)
+    bolt_on.nil? ? true : bolt_on.enabled?
   end
 
   def redirect_unless_bolt_on(bolt_on)
