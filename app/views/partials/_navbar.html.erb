@@ -5,19 +5,10 @@
       <%= Rails.application.config.application_name %> Appliance
     </a>
     <div class="navbar-nav">
-      <%# Regular pages %>
-      <% ['Users', 'SSH', 'Network'].each do |page| %>
-        <% path = polymorphic_path(page.downcase) %>
-        <%= link_to page,
-                    path,
-                    class: "nav-item nav-link #{'active' if current_page?(path)}"
-        %>
-      <% end %>
+      <% pages = ['Users', 'SSH', 'Network', 'Assets', 'Console'] %>
 
-      <%# Bolt-on pages %>
-      <% ['Assets', 'Console'].each do |page| %>
+      <% pages.map { |p| [p, polymorphic_path(p.downcase)] }.each do |page, path| %>
         <% if bolt_on_enabled(page) %>
-          <% path = polymorphic_path(page.downcase) %>
           <%= link_to page,
                       path,
                       class: "nav-item nav-link #{'active' if current_page?(path)}",
