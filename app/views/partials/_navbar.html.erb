@@ -5,35 +5,27 @@
       <%= Rails.application.config.application_name %> Appliance
     </a>
     <div class="navbar-nav">
-      <a class="nax-item nav-link <%= 'active' if current_page?(cluster_path) %>"
-         href="<%= cluster_path %>">
-         Appliance Information
-      </a>
-      <a class="nav-item nav-link <%= 'active' if current_page?(users_path) %>"
-         href="<%= users_path %>">
-        User Management
-      </a>
-      <a class="nav-item nav-link <%= 'active' if current_page?(ssh_path) %>"
-         href="<%= ssh_path %>">
-        SSH Key Management
-      </a>
-      <a class="nav-item nav-link <%= 'active' if current_page?(network_path) %>"
-         href="<%= network_path %>">
-         Network Management
-      </a>
-      <% if bolt_on_enabled('Console') %>
-        <%= link_to 'Console',
-            console_path,
-            class: "nav-item nav-link #{'active' if current_page?(console_path)}",
-            method: :get
+      <%# Regular pages %>
+      <% ['Users', 'SSH', 'Network'].each do |page| %>
+        <% path = polymorphic_path(page.downcase) %>
+        <%= link_to page,
+                    path,
+                    class: "nav-item nav-link #{'active' if current_page?(path)}"
         %>
       <% end %>
-      <% if bolt_on_enabled('Assets') %>
-        <a class="nav-item nav-link <%= 'active' if current_page?(assets_path) %>"
-           href="<%= assets_path %>">
-           Assets
-        </a>
+
+      <%# Bolt-on pages %>
+      <%= ['Assets', 'Console'].each do |page| %>
+        <% if bolt_on_enabled(page) %>
+          <% path = polymorphic_path(page.downcase) %>
+          <%= link_to page,
+                      path,
+                      class: "nav-item nav-link #{'active' if current_page?(path)}",
+                      method: :get
+          %>
+        <% end %>
       <% end %>
+
       <%= link_to "(#{current_user.username}) Sign Out",
           logout_path,
           method: :delete,
