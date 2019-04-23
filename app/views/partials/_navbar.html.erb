@@ -15,7 +15,7 @@
       <% end %>
 
       <%# Bolt-on pages %>
-      <%= ['Assets', 'Console'].each do |page| %>
+      <% ['Assets', 'Console'].each do |page| %>
         <% if bolt_on_enabled(page) %>
           <% path = polymorphic_path(page.downcase) %>
           <%= link_to page,
