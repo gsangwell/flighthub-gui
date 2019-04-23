@@ -1,5 +1,7 @@
 .parent-div {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .filter-bar {
