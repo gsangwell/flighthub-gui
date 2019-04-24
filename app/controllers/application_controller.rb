@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def run_global_script(command, *args)
-    Open3.capture3("bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}")
+    out, err, sta = Open3.capture3(
+      "bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}"
+    )
+
+    return { output: out, error: err, status: sta }
   end
 
   def bolt_on_enabled(name)

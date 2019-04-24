@@ -29,8 +29,7 @@ class NetworkController < ApplicationController
 
     tmp.close
     if run_shell_command("cp --no-preserve=mode,ownership #{tmp.path} #{network_variables}")
-      out, err, status = run_global_script(ENV['NETWORK_SET'])
-      if status.success?
+      if run_global_script(ENV['NETWORK_SET'])[:status].success?
         flash[:success] = 'Network configuration successfully modified'
       else
         flash[:danger] = 'Encountered an error whilst trying to run the setup script'
@@ -45,7 +44,7 @@ class NetworkController < ApplicationController
   end
 
   def add_ssh_service
-    if run_global_script(ENV['SSH_ENABLE'])[2].success?
+    if run_global_script(ENV['SSH_ENABLE'])[:status].success?
       flash[:success] = 'SSH enabled on the external interface'
     else
       flash[:danger] = 'Encountered an error whilst trying to enable SSH'
@@ -55,7 +54,7 @@ class NetworkController < ApplicationController
   end
 
   def remove_ssh_service
-    if run_global_script(ENV['SSH_DISABLE'])[2].success?
+    if run_global_script(ENV['SSH_DISABLE'])[:status].success?
       flash[:success] = 'SSH disabled on the external interface'
     else
       flash[:danger] = 'Encountered an error whilst trying to disable SSH'
@@ -71,13 +70,12 @@ class NetworkController < ApplicationController
   end
 
   def network_get_output
-    out, err, status = run_global_script(ENV['NETWORK_GET'])
-    out.lines.map
+    run_global_script(ENV['NETWORK_GET'])[:output].lines.map
   end
 
   def network_show_output
-    out, err, status = run_global_script(ENV['NETWORK_SHOW'])
-    out.split("\n\n").map { |n| n.split("\n") }
+    run_global_script(ENV['NETWORK_SHOW'])[:output].split("\n\n")
+      .map { |n| n.split("\n") }
   end
 
   def file_data
