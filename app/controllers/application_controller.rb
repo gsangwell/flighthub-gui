@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   require 'open3'
 
   helper_method :bolt_on_enabled
+  helper_method :format_markdown
 
   def authenticate(params)
     User.authenticate(
