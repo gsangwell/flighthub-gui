@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  # Deprecated and will be removed once run_global_script has been utilised
   def run_shell_command(command)
     system(command, out: File::NULL)
   end
