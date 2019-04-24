@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   require 'open3'
 
   helper_method :bolt_on_enabled
+  helper_method :format_markdown
 
   def authenticate(params)
     User.authenticate(
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless bolt_on_enabled(bolt_on)
   end
 
-  def render_as_markdown(html)
-    CommonMarker.render_html(html, :DEFAULT, [:table])
+  def format_markdown(text)
+    MarkdownRenderer.render(text)
   end
 end
