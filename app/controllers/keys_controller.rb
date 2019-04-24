@@ -32,7 +32,11 @@ class KeysController < ApplicationController
   private
 
   def file_data
-    run_global_script(ENV['SSH_GET'], ssh_keys)[:output].lines.map
+    if File.exist? ssh_keys
+      run_global_script(ENV['SSH_GET'], ssh_keys)[:output].lines.map
+    else
+      "No SSH keys file defined"
+    end
   end
 
   def new_key
