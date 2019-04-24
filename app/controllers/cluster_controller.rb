@@ -4,14 +4,14 @@ class ClusterController < ApplicationController
     @vpn = {
       enabled: bolt_on_enabled('VPN'),
       status: vpn_status,
-      name: vpn_name[0]
+      name: vpn_name
     }
 
     @content = appliance_information
   end
 
   def restart
-    if run_global_script(ENV['POWER_RESTART'])[2].success?
+    if run_global_script(ENV['POWER_RESTART'])[:status].success?
       flash[:success] = 'Restarting machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the machine'
@@ -21,7 +21,7 @@ class ClusterController < ApplicationController
   end
 
   def stop
-    if run_global_script(ENV['POWER_OFF'])[2].success?
+    if run_global_script(ENV['POWER_OFF'])[:status].success?
       flash[:success] = 'Stopping the machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the machine'
@@ -42,10 +42,10 @@ class ClusterController < ApplicationController
   end
 
   def vpn_status
-    run_global_script(ENV['VPN_STATUS'])[2].success?
+    run_global_script(ENV['VPN_STATUS'])[:status].success?
   end
 
   def vpn_name
-    run_global_script(ENV['VPN_NAME'])
+    run_global_script(ENV['VPN_NAME'])[:output]
   end
 end

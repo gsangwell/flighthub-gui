@@ -13,13 +13,16 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  # Deprecated and will be removed once run_global_script has been utilised
   def run_shell_command(command)
     system(command, out: File::NULL)
   end
 
   def run_global_script(command, *args)
-    Open3.capture3("bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}")
+    out, err, sta = Open3.capture3(
+      "bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}"
+    )
+
+    return { output: out, error: err, status: sta }
   end
 
   def bolt_on_enabled(name)
