@@ -84,6 +84,6 @@ class NetworkController < ApplicationController
   end
 
   def file_data
-    IO.binread(Rails.application.config.network_variables).lines.map
+    IO.binread(network_variables).lines.map
   end
 end
