@@ -24,8 +24,8 @@ class AssetsController < ApplicationController
         asset_list.concat(value)
       end
 
-      parts[0] = render_as_markdown(parts[0])
-      parts[2] = render_as_markdown(parts[2])
+      parts[0] = format_markdown(parts[0])
+      parts[2] = format_markdown(parts[2])
 
       [parts[0], parts[2]].each do |p|
         p.scan(/[\w-]+/).each do |w|
@@ -37,7 +37,7 @@ class AssetsController < ApplicationController
 
       @content = parts.reduce{ |a, b| a + b }
     else
-      @content = render_as_markdown(@asset_data)
+      @content = format_markdown(@asset_data)
     end
   end
 

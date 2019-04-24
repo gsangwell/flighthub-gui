@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless bolt_on_enabled(bolt_on)
   end
 
-  def render_as_markdown(html)
-    MarkdownRenderer.render(html)
+  def format_markdown(text)
+    MarkdownRenderer.render(text)
   end
 end
