@@ -36,9 +36,7 @@ class ClusterController < ApplicationController
     file = Rails.application.config.appliance_information
     file_data = IO.binread(file) if File.exist? file
 
-    if file_data
-      render_as_markdown(file_data)
-    end
+    render_as_markdown(file_data)
   end
 
   def vpn_status
