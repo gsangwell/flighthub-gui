@@ -35,6 +35,6 @@ class ApplicationController < ActionController::Base
   end
 
   def render_as_markdown(html)
-    CommonMarker.render_html(html, :DEFAULT, [:table])
+    MarkdownRenderer.render(html)
   end
 end
