@@ -31,12 +31,16 @@ Rails.application.routes.draw do
 
     delete  '/logout',  to: 'sessions#destroy'
 
+    match '/login' => redirect('/'), via: :get
+
     root 'cluster#index'
   end
 
   constraints Clearance::Constraints::SignedOut.new do
     get     '/login',   to: 'sessions#new'
     post    '/login',   to: 'sessions#create'
+
+    match '*path', to: 'sessions#new', via: :get
 
     root 'sessions#new'
   end
