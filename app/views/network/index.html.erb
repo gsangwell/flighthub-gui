@@ -22,7 +22,7 @@
           </div>
           <div class="card-body">
             <% network.each do |variable| %>
-              <%= CommonMarker.render_html(variable, :DEFAULT, [:table]).html_safe %>
+              <%= format_markdown(variable).html_safe %>
             <% end %>
           </div>
         </div>

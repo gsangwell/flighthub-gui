@@ -61,7 +61,7 @@
 
     11.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
 
-12. Precompile assets using `RAILS_ENV=production bin/rails assets:precompile`
+12. Precompile assets using `rake assets:precompile`
 
 13. Launch server using `bin/rails -s -p 80 -e production`
 

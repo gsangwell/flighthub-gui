@@ -4,7 +4,7 @@
   <div class="card" style="width: 70%;">
     <h5 class="card-header">Information</h5>
     <div class="card-body">
-      <% if @content %>
+      <% unless @content.empty? %>
         <%= @content.html_safe %>
       <% else %>
         There is no appliance information to display.

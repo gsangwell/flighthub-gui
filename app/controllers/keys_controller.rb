@@ -10,7 +10,7 @@ class KeysController < ApplicationController
   end
 
   def create
-    if run_global_script(ENV['SSH_ADD'], ssh_keys, new_key)[2].success?
+    if run_global_script(ENV['SSH_ADD'], ssh_keys, new_key)[:status].success?
       flash[:success] = 'SSH key successfully added'
     else
       flash[:danger] = 'Encountered an error whilst trying to add the SSH key'
@@ -20,7 +20,7 @@ class KeysController < ApplicationController
   end
 
   def delete
-    if run_global_script(ENV['SSH_REMOVE'], ssh_keys, "'#{params[:key]}'")[2].success?
+    if run_global_script(ENV['SSH_REMOVE'], ssh_keys, "'#{params[:key]}'")[:status].success?
       flash[:success] = 'SSH key successfully removed'
     else
       flash[:danger] = 'Encountered an error whilst trying to remove the SSH key'
@@ -32,7 +32,11 @@ class KeysController < ApplicationController
   private
 
   def file_data
-    run_global_script(ENV['SSH_GET'], ssh_keys)[0].lines.map
+    if File.exist? ssh_keys
+      run_global_script(ENV['SSH_GET'], ssh_keys)[:output].lines.map
+    else
+      "No SSH keys file defined"
+    end
   end
 
   def new_key

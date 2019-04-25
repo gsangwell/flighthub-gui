@@ -1,10 +1,12 @@
-.parent-div {
+.relative-row {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .filter-bar {
   position: absolute;
-  top: 0;
+  top: 10%;
   right: 0;
 }
 

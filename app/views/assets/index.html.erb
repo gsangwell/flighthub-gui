@@ -1,14 +1,26 @@
+<% content_for(:title) { 'Asset Information' } %>
+
 <div class="center text-center" style="width: 90%;">
-  <div class="parent-div">
-    <h1 class="visible-print-inline-block"> Asset Information </h1>
+  <div class="relative-row">
+    <h1 class="center">Asset Information</h1>
     <div class="filter-bar w-25">
-      <%= form_tag(assets_path, {method: :get, enforce_utf8: false, class: 'btn bordered'}) do  %>
-        <%= select_tag :filter_on,
-          options_for_select([['Group', 'group'], ['Type', 'type']]),
-          class: 'btn btn-bordered text-white'
-        %>
-        <%= text_field_tag :filter_arg, "", class: 'form-control-sm', style: 'width: 30%;' %>
-        <%= submit_tag 'Filter', name: nil, class: 'btn btn-bordered text-white' %>
+      <%= form_tag(assets_path,
+                    {
+                      method: :get,
+                      enforce_utf8: false,
+                      class: 'input-group'
+                    }
+                  ) do %>
+        <div class="input-group-prepend">
+          <%= select_tag :filter_on,
+            options_for_select([['Group', 'group'], ['Type', 'type']]),
+            class: 'btn btn-primary'
+          %>
+        </div>
+        <%= text_field_tag :filter_arg, "", class: 'form-control' %>
+        <div class="input-group-append">
+          <%= submit_tag 'Filter', name: nil, class: 'btn btn-primary' %>
+        </div>
       <% end %>
     </div>
   </div>
