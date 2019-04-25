@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       redirect_back(fallback_location: cluster_path)
     else
       flash[:danger] = 'Invalid username or password'
-      redirect_to login_path
+      redirect_back(fallback_location: login_path)
     end
   end
 
