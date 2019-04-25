@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
     delete  '/logout',  to: 'sessions#destroy'
 
+    match '/login' => redirect('/'), via: :get
+
     root 'cluster#index'
   end
 
