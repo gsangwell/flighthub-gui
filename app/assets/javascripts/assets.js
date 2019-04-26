@@ -1,5 +1,5 @@
 function changeIconOnClick() {
-  $('#accordion h5 a').click(function(e){
+  $('h5 a').click(function(e){
     var card = $(e.target).closest('div.card');
     var img = $('i', card)[0];
 
