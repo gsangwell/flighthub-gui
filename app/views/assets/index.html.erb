@@ -24,22 +24,33 @@
       <% end %>
     </div>
   </div>
-  <div>
+  <br>
     <% if @assets and not @assets.empty? %>
       <% @assets.each do |type, assets| %>
-        <div class='card'>
-          <h2> <%= type.downcase.capitalize %> </h2>
-          <p>
-            <% assets.each do |a| %>
-              <span class="asset-name">
-                <%= link_to a, assets_path + '/' + a %>
-              </span>
-            <% end %>
-          </p>
+        <div id="accordion-<%= type.downcase %>" class="center w-25">
+          <div class="card mb-1">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <a data-toggle="collapse" href="#<%= type %>">
+                  <%= type.downcase.capitalize %>
+                </a>
+                <i class="fa fa-minus fa-pull-right mt-1"></i>
+              </h5>
+            </div>
+
+            <div id="<%= type %>" class="collapse show" data-parent="#accordion-<%= type.downcase %>">
+              <div class="card-body">
+                <div class="list-group">
+                  <% assets.each do |a| %>
+                    <%= link_to a, assets_path + '/' + a, class: 'list-group-item list-group-item-action' %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     <% else %>
       No asset information found.
     <% end %>
-  </div>
 </div>
