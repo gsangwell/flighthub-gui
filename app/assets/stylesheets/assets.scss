@@ -14,3 +14,13 @@
   white-space: nowrap;
   padding: 0px 4px;
 }
+
+h1 span {
+  position: relative;
+}
+
+h1 span i {
+  position: absolute;
+  right: calc(100% + 20px);
+  margin-top: 0.5rem !important;
+}

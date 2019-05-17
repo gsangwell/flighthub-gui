@@ -24,12 +24,12 @@
       <% end %>
     </div>
   </div>
-  <div>
-    <h1>
+  <h1>
+    <span>
       <i class="fa fa-server"></i>
       <%= @active_cluster %>
-    </h1>
-  </div>
+    </span>
+  </h1>
   <br>
     <% if @assets and not @assets.empty? %>
       <% @assets.each do |type, assets| %>
