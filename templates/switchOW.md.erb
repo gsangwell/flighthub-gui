@@ -1,0 +1,20 @@
+# <a href="<%= @asset_data.name %>"><%= @asset_data.name %></a>
+
+<% @asset_hash['mutable']['maps'].each do |map| %>
+
+## <%= map.first %>
+
+<img class="mb-2" src="data:image/svg+xml;base64,<%= render_switch_base64(
+map[1]['map'],
+width: map[1]['map_width'],
+height: map[1]['map_height'],
+layout: map[1]['map_layout'],
+)%>">
+
+
+|Port|Note|
+|----|----|
+<% (map[1]['map'] || {}).to_h.each do |k,v| -%>
+|<%= k %>|<a href="<%= v %>"><%= v %></a>|
+<% end %>
+<% end %>

@@ -13,32 +13,9 @@ class AssetsController < ApplicationController
   def single_asset
     redirect_unless_bolt_on('Assets')
     @name = params[:name]
-    cmd = "flight inventory show #{@name} -f diagram-markdown;"
+    cmd = "flight inventory show #{@name} -f overware;"
     @asset_data = execute(cmd)
-    img_regex = /<img\ssrc=.+>/
-    if @asset_data.match?(img_regex)
-      parts = @asset_data.partition(img_regex)
-
-      asset_list = []
-      get_assets.each do |key, value|
-        asset_list.concat(value)
-      end
-
-      parts[0] = format_markdown(parts[0])
-      parts[2] = format_markdown(parts[2])
-
-      [parts[0], parts[2]].each do |p|
-        p.scan(/[\w-]+/).each do |w|
-          if asset_list.include?(w)
-            p[w] = view_context.link_to(w, assets_path + '/' + w)
-          end
-        end
-      end
-
-      @content = parts.reduce{ |a, b| a + b }
-    else
-      @content = format_markdown(@asset_data)
-    end
+    @content = format_markdown(@asset_data)
   end
 
   def asset_params
