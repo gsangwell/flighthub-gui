@@ -3,15 +3,19 @@ class AssetsController < ApplicationController
 
   def index
     redirect_unless_bolt_on('Assets')
+
     cmd = "flight inventory list"
+
     if params[:filter_on]
       cmd = cmd + " --#{params[:filter_on]} #{params[:filter_arg].downcase}"
     end
+
     @assets = get_assets(cmd)
   end
 
   def single_asset
     redirect_unless_bolt_on('Assets')
+
     @name = params[:name]
     cmd = "flight inventory show #{@name} -f overware;"
     @asset_data = execute(cmd)
@@ -23,6 +27,7 @@ class AssetsController < ApplicationController
   end
 
   private
+
   # currently just returns stdout, this may need to be altered
   def execute(cmd)
     #This ';' is neccessary to force shell execution
