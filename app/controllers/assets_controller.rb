@@ -4,7 +4,7 @@ class AssetsController < ApplicationController
   def index
     redirect_unless_bolt_on('Assets')
     cmd = "flight inventory list"
-    if params[:filter_on] and !params[:filter_arg].blank?
+    if params[:filter_on]
       cmd = cmd + " --#{params[:filter_on]} #{params[:filter_arg].downcase}"
     end
     @assets = get_assets(cmd)
