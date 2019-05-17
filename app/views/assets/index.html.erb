@@ -24,6 +24,12 @@
       <% end %>
     </div>
   </div>
+  <h1>
+    <span>
+      <i class="fa fa-server"></i>
+      <%= @active_cluster %>
+    </span>
+  </h1>
   <br>
     <% if @assets and not @assets.empty? %>
       <% @assets.each do |type, assets| %>
@@ -31,10 +37,10 @@
           <div class="card mb-1">
             <div class="card-header">
               <h5 class="mb-0">
-                <a data-toggle="collapse" href="#<%= type %>">
+                <a data-toggle="collapse" href="#<%= type %>" class="fill-container">
                   <%= type.downcase.capitalize %>
+                  <i class="fa fa-minus fa-pull-right mt-1"></i>
                 </a>
-                <i class="fa fa-minus fa-pull-right mt-1"></i>
               </h5>
             </div>
 

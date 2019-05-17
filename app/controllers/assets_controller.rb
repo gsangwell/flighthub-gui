@@ -5,6 +5,8 @@ class AssetsController < ApplicationController
     redirect_unless_bolt_on('Assets')
 
     cmd = "flight inventory list"
+    @active_cluster = execute("flight inventory list-cluster").
+      lines.first.remove('*').strip.capitalize
 
     if params[:filter_on]
       cmd = cmd + " --#{params[:filter_on]} #{params[:filter_arg].downcase}"
