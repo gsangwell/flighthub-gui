@@ -13,7 +13,7 @@ class AssetsController < ApplicationController
   def single_asset
     redirect_unless_bolt_on('Assets')
     @name = params[:name]
-    cmd = "flight inventory show #{@name} -f diagram-markdown;"
+    cmd = "flight inventory show #{@name} -t switchOW;"
     @asset_data = execute(cmd)
     @content = format_markdown(@asset_data)
   end
