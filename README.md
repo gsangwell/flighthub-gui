@@ -102,4 +102,4 @@ Prerequisites:
 
 * [Flight Inventory](https://github.com/openflighthpc/flight-inventory) installed
 * [Flight Inventory Diagrams](https://github.com/alces-software/flight-inventory-diagrams) plugin installed
-* [Template](https://github.com/alces-software/overware/templates/switchOW.md.erb) moved to the `templates` directory of the `Flight Inventory` install
+* [Template](templates/switchOW.md.erb) moved to the `templates` directory of the `Flight Inventory` install
