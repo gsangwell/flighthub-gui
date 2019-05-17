@@ -13,6 +13,7 @@ module MarkdownRenderer
       [
         :GITHUB_PRE_LANG,
         :HARDBREAKS,
+        :UNSAFE,
       ],
       [:tagfilter]
     ).strip

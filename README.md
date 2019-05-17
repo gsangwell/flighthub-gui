@@ -102,3 +102,12 @@ Prerequisites:
 
 * [Flight Inventory](https://github.com/openflighthpc/flight-inventory) installed
 * [Flight Inventory Diagrams](https://github.com/alces-software/flight-inventory-diagrams) plugin installed
+* [Template](templates/switchOW.md.erb) moved to the `templates` directory of the `Flight Inventory` install
+* Within `Flight Inventory` add the following to the `etc/templates.yml` file:
+
+    ```
+    overware:
+      default: server.md.erb
+      server: server.md.erb
+      switch: switchOW.md.erb
+    ```
