@@ -25,12 +25,24 @@
     </div>
   </div>
   <h1>
-    <span>
-      <i class="fa fa-server"></i>
-      <%= @active_cluster %>
-    </span>
+    <div class="dropdown">
+      <button class="btn btn-outline-dark btn-lg dropdown-toggle m-2"
+              type="button"
+              data-toggle="dropdown">
+        <span data-toggle="tooltip" title="Change the active cluster">
+          <i class="fa fa-server"></i>
+          <%= @active_cluster %>
+        </span>
+      </button>
+      <div class="dropdown-menu">
+        <% @clusters.select { |c| c != @active_cluster }.each do |cluster| %>
+          <a class="dropdown-item" href="<%= assets_path(cluster: cluster) %>">
+            <%= cluster %>
+          </a>
+        <% end %>
+      </div>
+    </div>
   </h1>
-  <br>
   <% if @assets and not @assets.empty? %>
     <% @assets.each do |type, assets| %>
       <div id="accordion-<%= type.downcase %>" class="center w-25">
