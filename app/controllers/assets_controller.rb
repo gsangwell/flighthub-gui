@@ -4,9 +4,11 @@ class AssetsController < ApplicationController
   def index
     redirect_unless_bolt_on('Assets')
 
+    change_active_cluster if params[:cluster]
+
     cmd = "flight inventory list"
-    @active_cluster = execute("flight inventory list-cluster").
-      lines.first.remove('*').strip.capitalize
+    @clusters = execute("flight inventory list-cluster").lines.map { |c| c.strip }
+    @active_cluster = @clusters.shift.remove('* ').capitalize
 
     if params[:filter_on]
       cmd = cmd + " --#{params[:filter_on]} #{params[:filter_arg].downcase}"
@@ -49,5 +51,9 @@ class AssetsController < ApplicationController
      assets_by_type[type_list.shift] = type_list
    end
    assets_by_type
+  end
+
+  def change_active_cluster
+    execute("flight inventory switch-cluster #{params[:cluster]}")
   end
 end
