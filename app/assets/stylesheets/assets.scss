@@ -14,3 +14,9 @@
   white-space: nowrap;
   padding: 0px 4px;
 }
+
+.dropdown-toggle::after {
+  float: right;
+  margin-top: 0.7rem !important;
+  margin-right: 0.4rem !important;
+}
