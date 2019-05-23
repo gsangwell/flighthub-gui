@@ -34,7 +34,7 @@
           <%= @active_cluster %>
         </span>
       </button>
-      <div class="dropdown-menu border-secondary">
+      <div class="dropdown-menu border-secondary text-center">
         <% @clusters.select { |c| c != @active_cluster }.each do |cluster| %>
           <a class="dropdown-item" href="<%= assets_path(cluster: cluster) %>">
             <%= cluster %>
