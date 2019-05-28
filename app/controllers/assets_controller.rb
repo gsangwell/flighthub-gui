@@ -8,7 +8,11 @@ class AssetsController < ApplicationController
 
     cmd = "flight inventory list"
     @clusters = execute("flight inventory list-cluster").lines.map { |c| c.strip }
-    @active_cluster = @clusters.shift.remove('* ').capitalize
+    @active_cluster = unless @clusters.empty?
+                        @clusters.shift.remove('* ').capitalize
+                      else
+                        'Default'
+                      end
 
     if params[:filter_on]
       cmd = cmd + " --#{params[:filter_on]} #{params[:filter_arg].downcase}"
