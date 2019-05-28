@@ -35,10 +35,14 @@
         </span>
       </button>
       <div class="dropdown-menu border-secondary text-center">
-        <% @clusters.select { |c| c != @active_cluster }.each do |cluster| %>
-          <a class="dropdown-item" href="<%= assets_path(cluster: cluster) %>">
-            <%= cluster %>
-          </a>
+        <% unless @clusters.empty? %>
+          <% @clusters.select { |c| c != @active_cluster }.each do |cluster| %>
+            <a class="dropdown-item" href="<%= assets_path(cluster: cluster) %>">
+              <%= cluster %>
+            </a>
+          <% end %>
+        <% else %>
+          <h6 class="dropdown-header">No clusters available to switch to</h6>
         <% end %>
       </div>
     </div>
