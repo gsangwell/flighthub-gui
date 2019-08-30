@@ -26,6 +26,22 @@ class ApplicationController < ActionController::Base
     return { output: out, error: err, status: sta }
   end
 
+  def run_appliance_menu_cmd(command, *args)
+    path = ENV['APPLIANCE_MENU_API_PATH']
+
+    Bundler.with_clean_env do
+      out, err, sta = Open3.capture3(
+        "#{path} #{command} #{args}"
+      )
+
+      return {
+        output: JSON.parse(out),
+        error: err,
+        status: sta
+      }
+    end
+  end
+
   def bolt_on_enabled(name)
     bolt_on = BoltOn.find_by(name: name)
     bolt_on.nil? ? true : bolt_on.enabled?
