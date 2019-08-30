@@ -4,6 +4,9 @@
   <div class="card" style="width: 70%;">
     <h5 class="card-header">Information</h5>
     <div class="card-body">
+      <% @info.each do |k, v| %>
+        <b><%= k.capitalize %></b> : <%= v %><br>
+      <% end %>
       <% unless @content.empty? %>
         <%= @content.html_safe %>
       <% else %>
