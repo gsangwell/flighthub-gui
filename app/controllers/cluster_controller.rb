@@ -6,6 +6,7 @@ class ClusterController < ApplicationController
       status: vpn_status,
       name: vpn_name
     }
+    @info = run_appliance_menu_cmd('infoInst')[:output]
 
     @content = appliance_information
   end
