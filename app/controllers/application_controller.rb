@@ -30,9 +30,8 @@ class ApplicationController < ActionController::Base
     path = ENV['APPLIANCE_MENU_API_PATH']
 
     Bundler.with_clean_env do
-      out, err, sta = Open3.capture3(
-        "#{path} #{command} #{args}"
-      )
+      cmd = [path, command, *args]
+      out, err, sta = Open3.capture3(*cmd)
 
       return {
         output: JSON.parse(out),
