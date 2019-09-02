@@ -1,19 +1,23 @@
 class UsersController < ApplicationController
+  require 'json'
+
   def index
-    @users = User.all
+    @users = run_appliance_menu_cmd('userGetList')[:output]["users"]
+      .sort.map { |u| u.gsub(/\(.*?\)/, "") }
   end
 
   def create
     user = User.find_by(username: user_params[:username])
     unless user
       if user_params[:password] == user_params[:password_confirmation]
-        new_user = User.new(
-          username: user_params[:username],
-          email: user_params[:email],
-          password: user_params[:password]
+        user = JSON.generate(
+          {
+            "user-name": user_params[:username],
+            "full-name": user_params[:full_name]
+          }
         )
 
-        if new_user.save
+        if run_appliance_menu_cmd('userCreate', user)[:output]["status"]
           flash[:success] = 'User created successfully'
         else
           flash[:danger] = 'Encountered an error whilst saving the new user'

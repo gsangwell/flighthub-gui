@@ -15,10 +15,10 @@
 
       <div class="row mb-1">
         <div class="col-sm-3 form-label">
-          <%= f.label :email, 'Email:' %>
+          <%= f.label :full_name, 'Full Name:' %>
         </div>
         <div class="col-sm-9">
-          <%= f.email_field :email, class: 'form-control', required: true %>
+          <%= f.text_field :full_name, class: 'form-control', required: true %>
         </div>
       </div>
 
@@ -51,7 +51,6 @@
       <thead>
         <tr>
           <th> Username </th>
-          <th> Email Address </th>
           <th> Modify </th>
           <th> Delete </th>
         </tr>
@@ -60,17 +59,14 @@
         <% if @users %>
           <% @users.each do |user| %>
             <tr>
-              <td><%= user.username %></td>
-              <td><%= user.email %></td>
+              <td><%= user %></td>
               <td>
                 <button type="button"
                         class="btn btn-primary"
                         style="width: 100%;"
                         data-toggle="modal"
                         data-target="#modifyModal"
-                        data-username="<%= user.username %>"
-                        data-email="<%= user.email %>"
-                        data-id="<%= user.id %>"
+                        data-username="<%= user %>"
                 >
                   <i class="fa fa-pencil"></i>
                 </button>
@@ -118,15 +114,6 @@
             </div>
           </div>
 
-          <div class="row mb-1">
-            <div class="col-sm-3 form-label">
-              <%= f.label :email, 'Email:' %>
-            </div>
-            <div class="col-sm-9">
-              <%= f.text_field :email, class: 'form-control' %>
-            </div>
-          </div>
-
           <hr>
           <div class="row mb-1">
             <div class="col-sm-3 form-label">
@@ -136,8 +123,6 @@
               <%= f.password_field :password, class: 'form-control' %>
             </div>
           </div>
-
-          <%= f.hidden_field :id %>
 
           <%= f.submit 'Update', class: 'btn btn-primary mt-2' %>
         <% end %>
