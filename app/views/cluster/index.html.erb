@@ -4,7 +4,13 @@
   <div class="card" style="width: 70%;">
     <h5 class="card-header">Information</h5>
     <div class="card-body">
+      <h2><b>Cloud Instance Information</b></h2>
       <% @info.each do |k, v| %>
+        <b><%= k.capitalize %></b> : <%= v %><br>
+      <% end %>
+
+      <h2><b>Network Stats</b></h2>
+      <% @network.each do |k, v| %>
         <b><%= k.capitalize %></b> : <%= v %><br>
       <% end %>
       <% unless @content.empty? %>
