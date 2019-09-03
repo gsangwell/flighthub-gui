@@ -7,10 +7,19 @@ class KeysController < ApplicationController
 
   def index
     @ssh_keys = file_data
+    @users = run_appliance_menu_cmd('userGetList')[:output]["users"]
+      .sort.map { |u| u.gsub(/\(.*?\)/, "") }
   end
 
   def create
-    if run_global_script(ENV['SSH_ADD'], ssh_keys, new_key)[:status].success?
+    user_key_data = JSON.generate(
+      {
+        "user-name": key_params[:user],
+        "key": key_params[:key]
+      }
+    )
+
+    if run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
       flash[:success] = 'SSH key successfully added'
     else
       flash[:danger] = 'Encountered an error whilst trying to add the SSH key'
@@ -39,7 +48,7 @@ class KeysController < ApplicationController
     end
   end
 
-  def new_key
-    "'#{params[:new_key][:key]}'"
+  def key_params
+    params[:new_key]
   end
 end

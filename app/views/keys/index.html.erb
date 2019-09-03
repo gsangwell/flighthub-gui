@@ -9,6 +9,14 @@
       <%= form_for(:new_key, url: ssh_path, html: { class: 'creation-form styled-form' }) do |f| %>
         <div class="row mb-1">
           <div class="col-sm-1 form-label">
+            <%= f.label :user, 'User:' %>
+          </div>
+          <div class="col-sm-11">
+            <%= f.select :user, @users, {}, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+        <div class="row mb-1">
+          <div class="col-sm-1 form-label">
             <%= f.label :key, 'Key:' %>
           </div>
           <div class="col-sm-11">
