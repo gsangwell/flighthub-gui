@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   constraints Clearance::Constraints::SignedIn.new do
     get 'cluster', to: 'cluster#index'
+    post 'cluster/enable_engineering_mode', to: 'cluster#enable_eng_mode'
     post 'cluster/restart', to: 'cluster#restart'
     post 'cluster/stop', to: 'cluster#stop'
 
