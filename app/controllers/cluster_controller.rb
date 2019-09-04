@@ -32,6 +32,16 @@ class ClusterController < ApplicationController
     redirect_to cluster_path
   end
 
+  def enable_eng_mode
+    if run_appliance_menu_cmd('engMode')[:status].success?
+      flash[:success] = 'Engineering Mode has been enabled for 1 hour'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to enable Engineering Mode'
+    end
+
+    redirect_to cluster_path
+  end
+
   private
 
   def appliance_information
