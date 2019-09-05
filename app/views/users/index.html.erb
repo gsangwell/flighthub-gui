@@ -127,7 +127,7 @@
               <%= f.label :username, 'Username:' %>
             </div>
             <div class="col-sm-9">
-              <%= f.text_field :username, class: 'form-control' %>
+              <%= f.text_field :username, class: 'form-control', disabled: true %>
             </div>
           </div>
 
@@ -138,6 +138,15 @@
             </div>
             <div class="col-sm-9">
               <%= f.password_field :password, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-sm-3 form-label">
+              <%= f.label :ssh_key, 'SSH Key:' %>
+            </div>
+            <div class="col-sm-9">
+              <%= f.text_area :ssh_key, class: 'form-control' %>
             </div>
           </div>
 

@@ -17,8 +17,8 @@ class UsersController < ApplicationController
           }
         )
 
-        if user_params[:ssh_key]
-          set_ssh_key
+        unless user_params[:ssh_key].empty?
+          set_ssh_key(user_params)
         end
 
         if run_appliance_menu_cmd('userCreate', user)[:output]["status"]
@@ -37,24 +37,13 @@ class UsersController < ApplicationController
   end
 
   def modify
-    user = User.find(modify_params[:id])
-
-    unless modify_params[:username].empty?
-      user.username = modify_params[:username]
-    end
-
-    unless modify_params[:email].empty?
-      user.email = modify_params[:email]
-    end
-
+    # TODO: Change this when password functionality is added
     unless modify_params[:password].empty?
       user.password = modify_params[:password]
     end
 
-    if user.save
-      flash[:success] = 'User modified successfully'
-    else
-      flash[:danger] = 'Encountered an error whilst updating the user'
+    unless modify_params[:ssh_key].empty?
+      set_ssh_key(modify_params)
     end
 
     redirect_to users_path
@@ -86,11 +75,11 @@ class UsersController < ApplicationController
     params[:user_modify]
   end
 
-  def set_ssh_key
+  def set_ssh_key(params)
     user_key_data = JSON.generate(
       {
-        "user-name": user_params[:username],
-        "key": user_params[:ssh_key]
+        "user-name": params[:username],
+        "key": params[:ssh_key]
       }
     )
 
