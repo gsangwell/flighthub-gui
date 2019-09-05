@@ -38,6 +38,9 @@
         </div>
         <div class="col-sm-9">
           <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+          <small class="form-text text-muted text-left">
+            Setting a password allows the user to login to this application.
+          </small>
         </div>
       </div>
 
@@ -48,6 +51,9 @@
         </div>
         <div class="col-sm-9">
           <%= f.text_area :key, class: 'form-control' %>
+          <small class="form-text text-muted text-left">
+            Setting an SSH key allows the user to access their environment from a terminal.
+          </small>
         </div>
       </div>
 
