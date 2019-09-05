@@ -1,25 +1,38 @@
 <% content_for(:title) { 'Appliance Information' } %>
 
 <div class="row center mt-3" style="width: 90%;">
-  <div class="card" style="width: 70%;">
-    <h5 class="card-header">Information</h5>
-    <div class="card-body">
-      <h2><b>Cloud Instance Information</b></h2>
-      <% @info.each do |k, v| %>
-        <b><%= k.capitalize %></b> : <%= v %><br>
-      <% end %>
-
-      <h2><b>Network Stats</b></h2>
-      <% @network.each do |k, v| %>
-        <b><%= k.capitalize %></b> : <%= v %><br>
-      <% end %>
-      <% unless @content.empty? %>
-        <%= @content.html_safe %>
-      <% else %>
-        There is no appliance information to display.
-      <% end %>
+  <div style="width: 60%;">
+    <%# Cloud Instance Information Card %>
+    <div class="card mb-2">
+      <h5 class="card-header">Cloud Instance Information</h5>
+      <div class="card-body">
+        <% @info.each do |k, v| %>
+          <b><%= k.capitalize %></b> : <%= v %><br>
+        <% end %>
+      </div>
     </div>
+
+    <%# Network Stats Card %>
+    <div class="card mb-2">
+      <h5 class="card-header">Network Stats</h5>
+      <div class="card-body">
+        <% @network.each do |k, v| %>
+          <b><%= k.capitalize %></b> : <%= v %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Appliance Information Card %>
+    <% unless @content.empty? %>
+      <div class="card mb-2">
+        <h5 class="card-header">Information</h5>
+        <div class="card-body">
+          <%= @content.html_safe %>
+        </div>
+      </div>
+    <% end %>
   </div>
+
   <div class="col">
     <div>
       <%= render 'eng_mode_controls' %>
