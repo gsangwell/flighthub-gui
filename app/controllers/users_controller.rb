@@ -17,6 +17,10 @@ class UsersController < ApplicationController
           }
         )
 
+        if user_params[:ssh_key]
+          set_ssh_key
+        end
+
         if run_appliance_menu_cmd('userCreate', user)[:output]["status"]
           flash[:success] = 'User created successfully'
         else
@@ -80,5 +84,16 @@ class UsersController < ApplicationController
 
   def modify_params
     params[:user_modify]
+  end
+
+  def set_ssh_key
+    user_key_data = JSON.generate(
+      {
+        "user-name": user_params[:username],
+        "key": user_params[:ssh_key]
+      }
+    )
+
+    run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
   end
 end
