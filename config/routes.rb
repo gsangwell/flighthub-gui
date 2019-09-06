@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   constraints Clearance::Constraints::SignedIn.new do
     get 'cluster', to: 'cluster#index'
+    post 'cluster/enable_engineering_mode', to: 'cluster#enable_eng_mode'
     post 'cluster/restart', to: 'cluster#restart'
     post 'cluster/stop', to: 'cluster#stop'
 
@@ -11,23 +12,7 @@ Rails.application.routes.draw do
     post 'users/modify', to: 'users#modify'
     post 'users/delete', to: 'users#remove'
 
-    get 'ssh', to: 'keys#index'
-    post 'ssh', to: 'keys#create'
-    post 'ssh/delete', to: 'keys#delete'
-
-    get 'network', to: 'network#index'
-    post 'network/edit', to: 'network#edit'
-    post 'firewall/add-ssh', to: 'network#add_ssh_service'
-    post 'firewall/remove-ssh', to: 'network#remove_ssh_service'
-
-    post 'vpn/start', to: 'vpn#start'
-    post 'vpn/stop', to: 'vpn#stop'
-    post 'vpn/restart', to: 'vpn#restart'
-
     get 'console', to: 'console#index'
-
-    get 'assets', to: 'assets#index'
-    get 'assets/:name', to: 'assets#single_asset'
 
     delete  '/logout',  to: 'sessions#destroy'
 

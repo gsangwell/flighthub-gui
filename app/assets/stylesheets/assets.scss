@@ -15,12 +15,12 @@
   padding: 0px 4px;
 }
 
-h1 span {
-  position: relative;
+.dropdown-toggle::after {
+  float: right;
+  margin-top: 0.7rem !important;
+  margin-right: 0.4rem !important;
 }
 
-h1 span i {
-  position: absolute;
-  right: calc(100% + 20px);
-  margin-top: 0.5rem !important;
+.dropdown-menu {
+  min-width: 100% !important;
 }

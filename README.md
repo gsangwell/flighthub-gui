@@ -1,5 +1,5 @@
 
-# Alces Overware
+# FlightHub GUI 
 
 ## Installation 
 
@@ -37,7 +37,7 @@
 
 5. Install and configure `Flight Terminal Service` as described [here](https://github.com/alces-software/flight-terminal-service)
 
-6. Clone this repo using `git clone https://github.com/alces-software/overware.git`
+6. Clone this repo using `git clone https://github.com/alces-software/flighthub-gui.git`
 
 7. Copy the example environment variables file using `cp '.env.example' '.env'`
 
@@ -55,59 +55,9 @@
 
     10.4. Run data migrations `RAILS_ENV=production bin/rails data:migrate`
 
-11. Create an initial user
+11. Precompile assets using `rake assets:precompile`
 
-    11.1. Enter the rails console using `RAILS_ENV=production rails c`
+12. Launch server using `bin/rails -s -p 80 -e production`
 
-    11.2. Create the user with `User.create(username: '<USERNAME HERE>', password: '<PASSWORD HERE>')`
+13. Access the application at its public IP and login using the username and password of configured PAM user 
 
-12. Precompile assets using `rake assets:precompile`
-
-13. Launch server using `bin/rails -s -p 80 -e production`
-
-14. Access the application at its public IP and use the details for the user you created in step 7 to log in
-
-## Bolt-Ons
-
-A Bolt-On is an optional part of the web interface configuration. These can be enabled on an individual basis in one of two ways:
-
-1. Within the `rails-admin` interface
-
-   1.1. Navigate to the `Bolt ons` section
-
-   For each Bolt-On you wish to enable:
-
-   1.2. Click the edit icon next to the database entry
-
-   1.3. Click the `Enabled` checkbox
-
-   1.4. Save the entry
-
-2. Via the rails console
-
-   2.1. Enter the rails console using `RAILS_ENV=production rails c`
-
-   For each Bolt-On you wish to enable:
-
-   2.2. Enable using:
-
-    ```
-      bolt_on = BoltOn.find_by(name: '<NAME_OF_BOLT_ON>')
-      bolt_on.enabled = true
-      bolt_on.save!
-    ```
-### Assets
-
-Prerequisites:
-
-* [Flight Inventory](https://github.com/openflighthpc/flight-inventory) installed
-* [Flight Inventory Diagrams](https://github.com/alces-software/flight-inventory-diagrams) plugin installed
-* [Template](templates/switchOW.md.erb) moved to the `templates` directory of the `Flight Inventory` install
-* Within `Flight Inventory` add the following to the `etc/templates.yml` file:
-
-    ```
-    overware:
-      default: server.md.erb
-      server: server.md.erb
-      switch: switchOW.md.erb
-    ```

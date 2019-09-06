@@ -1,19 +1,27 @@
 class UsersController < ApplicationController
+  require 'json'
+
   def index
-    @users = User.all
+    @users = run_appliance_menu_cmd('userGetList')[:output]["users"]
+      .sort.map { |u| u.gsub(/\(.*?\)/, "") }
   end
 
   def create
     user = User.find_by(username: user_params[:username])
     unless user
       if user_params[:password] == user_params[:password_confirmation]
-        new_user = User.new(
-          username: user_params[:username],
-          email: user_params[:email],
-          password: user_params[:password]
+        user = JSON.generate(
+          {
+            "user-name": user_params[:username],
+            "full-name": user_params[:full_name]
+          }
         )
 
-        if new_user.save
+        unless user_params[:ssh_key].empty?
+          set_ssh_key(user_params)
+        end
+
+        if run_appliance_menu_cmd('userCreate', user)[:output]["status"]
           flash[:success] = 'User created successfully'
         else
           flash[:danger] = 'Encountered an error whilst saving the new user'
@@ -29,24 +37,13 @@ class UsersController < ApplicationController
   end
 
   def modify
-    user = User.find(modify_params[:id])
-
-    unless modify_params[:username].empty?
-      user.username = modify_params[:username]
-    end
-
-    unless modify_params[:email].empty?
-      user.email = modify_params[:email]
-    end
-
+    # TODO: Change this when password functionality is added
     unless modify_params[:password].empty?
       user.password = modify_params[:password]
     end
 
-    if user.save
-      flash[:success] = 'User modified successfully'
-    else
-      flash[:danger] = 'Encountered an error whilst updating the user'
+    unless modify_params[:ssh_key].empty?
+      set_ssh_key(modify_params)
     end
 
     redirect_to users_path
@@ -76,5 +73,16 @@ class UsersController < ApplicationController
 
   def modify_params
     params[:user_modify]
+  end
+
+  def set_ssh_key(params)
+    user_key_data = JSON.generate(
+      {
+        "user-name": params[:username],
+        "key": params[:ssh_key]
+      }
+    )
+
+    run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
   end
 end

@@ -6,6 +6,8 @@ class ClusterController < ApplicationController
       status: vpn_status,
       name: vpn_name
     }
+    @info = run_appliance_menu_cmd('infoInst')[:output]
+    @network = run_appliance_menu_cmd('inetStat')[:output]
 
     @content = appliance_information
   end
@@ -25,6 +27,16 @@ class ClusterController < ApplicationController
       flash[:success] = 'Stopping the machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the machine'
+    end
+
+    redirect_to cluster_path
+  end
+
+  def enable_eng_mode
+    if run_appliance_menu_cmd('engMode')[:status].success?
+      flash[:success] = 'Engineering Mode has been enabled for 1 hour'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to enable Engineering Mode'
     end
 
     redirect_to cluster_path

@@ -10,7 +10,7 @@
         <% ['start', 'restart'].each do |action| %>
           <%= link_to action.capitalize,
                       public_send("vpn_#{action}_path"),
-                      class: "btn #{action == 'stop' ? 'btn-danger' : 'btn-primary' }",
+                      class: 'btn btn-primary',
                       style: 'width: 33%;',
                       method: :post
           %>

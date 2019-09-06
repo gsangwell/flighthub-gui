@@ -15,10 +15,10 @@
 
       <div class="row mb-1">
         <div class="col-sm-3 form-label">
-          <%= f.label :email, 'Email:' %>
+          <%= f.label :full_name, 'Full Name:' %>
         </div>
         <div class="col-sm-9">
-          <%= f.email_field :email, class: 'form-control', required: true %>
+          <%= f.text_field :full_name, class: 'form-control', required: true %>
         </div>
       </div>
 
@@ -38,6 +38,22 @@
         </div>
         <div class="col-sm-9">
           <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+          <small class="form-text text-muted text-left">
+            Setting a password allows the user to login to this user interface.
+          </small>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row mb-1">
+        <div class="col-sm-3 form-label">
+          <%= f.label :ssh_key, 'SSH Key:' %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.text_area :key, class: 'form-control' %>
+          <small class="form-text text-muted text-left">
+            Setting an SSH key allows the user to access their environment from a terminal.
+          </small>
         </div>
       </div>
 
@@ -51,7 +67,6 @@
       <thead>
         <tr>
           <th> Username </th>
-          <th> Email Address </th>
           <th> Modify </th>
           <th> Delete </th>
         </tr>
@@ -60,25 +75,23 @@
         <% if @users %>
           <% @users.each do |user| %>
             <tr>
-              <td><%= user.username %></td>
-              <td><%= user.email %></td>
+              <td><%= user %></td>
               <td>
                 <button type="button"
                         class="btn btn-primary"
                         style="width: 100%;"
                         data-toggle="modal"
                         data-target="#modifyModal"
-                        data-username="<%= user.username %>"
-                        data-email="<%= user.email %>"
-                        data-id="<%= user.id %>"
+                        data-username="<%= user %>"
                 >
                   <i class="fa fa-pencil"></i>
                 </button>
               </td>
               <td>
                 <%= link_to raw("<i class=\"fa fa-trash\"></i>"),
-                              users_delete_path(user: user),
-                              class: "btn btn-danger",
+                              #users_delete_path(user: user),
+                              users_path,
+                              class: "btn btn-danger disabled",
                               style: 'width: 100%;',
                               data: {
                                 confirm: <<~EOF
@@ -110,26 +123,17 @@
           html: { class: 'creation-form styled-form' }) do |f|
         %>
           <div class="row mb-1">
-            <div class="col-sm-3 form-label">
+            <div class="col-sm-3 form-label mt-1">
               <%= f.label :username, 'Username:' %>
             </div>
             <div class="col-sm-9">
-              <%= f.text_field :username, class: 'form-control' %>
-            </div>
-          </div>
-
-          <div class="row mb-1">
-            <div class="col-sm-3 form-label">
-              <%= f.label :email, 'Email:' %>
-            </div>
-            <div class="col-sm-9">
-              <%= f.text_field :email, class: 'form-control' %>
+              <%= f.text_field :username, class: 'form-control', disabled: true %>
             </div>
           </div>
 
           <hr>
           <div class="row mb-1">
-            <div class="col-sm-3 form-label">
+            <div class="col-sm-3 form-label mt-1">
               <%= f.label :password, 'Password:' %>
             </div>
             <div class="col-sm-9">
@@ -137,7 +141,24 @@
             </div>
           </div>
 
-          <%= f.hidden_field :id %>
+          <div class="row mb-1">
+            <div class="col-sm-3 form-label mt-1">
+              <%= f.label :password_confirmation, 'Confirmation:' %>
+            </div>
+            <div class="col-sm-9">
+              <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row mb-1">
+            <div class="col-sm-3 form-label mt-1">
+              <%= f.label :ssh_key, 'SSH Key:' %>
+            </div>
+            <div class="col-sm-9">
+              <%= f.text_area :ssh_key, class: 'form-control' %>
+            </div>
+          </div>
 
           <%= f.submit 'Update', class: 'btn btn-primary mt-2' %>
         <% end %>
