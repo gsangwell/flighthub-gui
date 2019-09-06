@@ -37,7 +37,7 @@
 
 5. Install and configure `Flight Terminal Service` as described [here](https://github.com/alces-software/flight-terminal-service)
 
-6. Clone this repo using `git clone https://github.com/alces-software/overware.git`
+6. Clone this repo using `git clone https://github.com/alces-software/flighthub-gui.git`
 
 7. Copy the example environment variables file using `cp '.env.example' '.env'`
 
