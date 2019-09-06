@@ -5,7 +5,7 @@
       <%= Rails.application.config.application_name %> Appliance
     </a>
     <div class="navbar-nav">
-      <% pages = ['Users', 'SSH', 'Network', 'Assets', 'Console'] %>
+      <% pages = ['Users', 'Console'] %>
 
       <% pages.map { |p| [p, polymorphic_path(p.downcase)] }.each do |page, path| %>
         <% if bolt_on_enabled(page) %>
