@@ -1,9 +1,9 @@
 <% content_for(:title) { 'Appliance Information' } %>
 
 <div class="row center mt-3" style="width: 90%;">
-  <div style="width: 60%;">
+  <div class="col" style="min-width: 60%;">
     <%# Cloud Instance Information Card %>
-    <div class="card mb-2">
+    <div class="card d-flex mb-2">
       <h5 class="card-header">Cloud Instance Information</h5>
       <div class="card-body">
         <% @info.each do |k, v| %>
@@ -13,7 +13,7 @@
     </div>
 
     <%# Network Stats Card %>
-    <div class="card mb-2">
+    <div class="card d-flex mb-2">
       <h5 class="card-header">Network Stats</h5>
       <div class="card-body">
         <% @network.each do |k, v| %>
@@ -24,7 +24,7 @@
 
     <%# Appliance Information Card %>
     <% unless @content.empty? %>
-      <div class="card mb-2">
+      <div class="card d-flex mb-2">
         <h5 class="card-header">Information</h5>
         <div class="card-body">
           <%= @content.html_safe %>
@@ -34,8 +34,6 @@
   </div>
 
   <div class="col">
-    <div>
-      <%= render 'eng_mode_controls' %>
-    </div>
+    <%= render 'eng_mode_controls' %>
   </div>
 </div>
