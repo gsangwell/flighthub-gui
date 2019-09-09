@@ -1,0 +1,61 @@
+<div class="card d-flex mb-2">
+  <h5 class="card-header"> Add New User </h5>
+  <div class="card-body">
+    <%= form_for(:user, url: users_path, html: { class: 'styled-form text-center w-100' }) do |f| %>
+      <div class="row mb-1">
+        <div class="col-sm-3 form-label">
+          <%= f.label :username, 'Username:' %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.text_field :username, class: 'form-control', required: true %>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-sm-3 form-label">
+          <%= f.label :full_name, 'Full Name:' %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.text_field :full_name, class: 'form-control', required: true %>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row mb-1">
+        <div class="col-sm-3 form-label">
+          <%= f.label :password, 'Password:' %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.password_field :password, class: 'form-control', required: true %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 form-label">
+          <%= f.label :password_confirmation, 'Confirm password:' %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+          <small class="form-text text-muted text-left">
+            Setting a password allows the user to login to this user interface.
+          </small>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row mb-1">
+        <div class="col-sm-3 form-label">
+          <%= f.label :ssh_key, 'SSH Key:' %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.text_area :key, class: 'form-control' %>
+          <small class="form-text text-muted text-left">
+            Setting an SSH key allows the user to access their environment from a terminal.
+          </small>
+        </div>
+      </div>
+
+      <%= f.submit 'Add User', class: 'btn btn-primary mt-2' %>
+    <% end %>
+  </div>
+</div>

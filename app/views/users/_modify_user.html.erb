@@ -1,0 +1,57 @@
+<div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title center"> Modify User </h4>
+    </div>
+    <div class="modal-body">
+      <%= form_for(
+        :user_modify,
+        url: users_modify_path,
+        html: { class: 'creation-form styled-form' }) do |f|
+      %>
+        <div class="row mb-1">
+          <div class="col-sm-3 form-label mt-1">
+            <%= f.label :username, 'Username:' %>
+          </div>
+          <div class="col-sm-9">
+            <%= f.text_field :username, class: 'form-control', disabled: true %>
+          </div>
+        </div>
+
+        <hr>
+        <div class="row mb-1">
+          <div class="col-sm-3 form-label mt-1">
+            <%= f.label :password, 'Password:' %>
+          </div>
+          <div class="col-sm-9">
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-sm-3 form-label mt-1">
+            <%= f.label :password_confirmation, 'Confirmation:' %>
+          </div>
+          <div class="col-sm-9">
+            <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+          </div>
+        </div>
+
+        <hr>
+        <div class="row mb-1">
+          <div class="col-sm-3 form-label mt-1">
+            <%= f.label :ssh_key, 'SSH Key:' %>
+          </div>
+          <div class="col-sm-9">
+            <%= f.text_area :ssh_key, class: 'form-control' %>
+          </div>
+        </div>
+
+        <%= f.submit 'Update', class: 'btn btn-primary mt-2' %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+    </div>
+  </div>
+</div>

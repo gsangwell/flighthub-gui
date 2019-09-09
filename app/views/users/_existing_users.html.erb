@@ -1,0 +1,51 @@
+<div class="card d-flex mb-2">
+  <h5 class="card-header"> Existing Users </h5>
+  <div class="card-body">
+    <div class="table-responsive mt-2">
+      <table class="table table-hover center">
+        <thead>
+          <tr>
+            <th> Username </th>
+            <th> Modify </th>
+            <th> Delete </th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% if @users %>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user %></td>
+                <td style="width: 5%;">
+                  <button type="button"
+                          class="btn btn-primary"
+                          style="width: 100%;"
+                          data-toggle="modal"
+                          data-target="#modifyModal"
+                          data-username="<%= user %>"
+                          >
+                          <i class="fa fa-pencil"></i>
+                  </button>
+                </td>
+                <td style="width: 5%;">
+                  <%= link_to raw("<i class=\"fa fa-trash\"></i>"),
+                    #users_delete_path(user: user),
+                    users_path,
+                    class: "btn btn-danger disabled",
+                    style: 'width: 100%;',
+                    data: {
+                      confirm: <<~EOF
+                            Are you sure you wish to delete this user?
+                            This action is non-reversible
+                      EOF
+                    },
+                    method: :post
+                  %>
+              </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
