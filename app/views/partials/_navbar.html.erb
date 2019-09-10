@@ -4,7 +4,11 @@
       <%= image_tag 'moosebird.png', size: '40x25', class: 'mb-1' %>
       <%= Rails.application.config.application_name %> Appliance
     </a>
-    <div class="navbar-nav">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbarMenu" class="navbar-nav navbar-collapse collapse">
       <% pages = ['Users', 'Console'] %>
 
       <% pages.map { |p| [p, polymorphic_path(p.downcase)] }.each do |page, path| %>
