@@ -40,13 +40,18 @@ class UsersController < ApplicationController
   end
 
   def modify
-    # TODO: Change this when password functionality is added
+    modifications = []
+
     unless modify_params[:password].empty?
-      user.password = modify_params[:password]
+      modifications << 'password' if set_password(modify_params)
     end
 
     unless modify_params[:ssh_key].empty?
-      set_ssh_key(modify_params)
+      modifications << 'SSH key' if set_ssh_key(modify_params)
+    end
+
+    unless modifications.empty?
+      flash[:success] = "Successfully modified #{modifications.join(' and ')} for #{modify_params[:username]}"
     end
 
     redirect_to users_path
@@ -86,7 +91,11 @@ class UsersController < ApplicationController
       }
     )
 
-    run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
+    if run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
+      return true
+    else
+      flash[:danger] = 'Encountered an error whilst setting the SSH key'
+    end
   end
 
   def set_password(params)
@@ -99,7 +108,9 @@ class UsersController < ApplicationController
       }
     )
 
-    unless run_appliance_menu_cmd('userSetPasswd', user_password_data)[:output]["status"]
+    if run_appliance_menu_cmd('userSetPasswd', user_password_data)[:output]["status"]
+      return true
+    else
       flash[:danger] = 'Encountered an error whilst setting the password'
     end
   end
