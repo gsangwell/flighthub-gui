@@ -1,4 +1,6 @@
 class ClusterController < ApplicationController
+  require 'json'
+
   def index
     #BoltOns
     @vpn = {
@@ -13,7 +15,8 @@ class ClusterController < ApplicationController
   end
 
   def restart
-    if run_global_script(ENV['POWER_RESTART'])[:status].success?
+    cmd = run_appliance_menu_cmd('reboot', JSON.generate({ "reboot": true }))
+    if cmd[:output]["status"]
       flash[:success] = 'Restarting machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to restart the machine'
@@ -23,7 +26,8 @@ class ClusterController < ApplicationController
   end
 
   def stop
-    if run_global_script(ENV['POWER_OFF'])[:status].success?
+    cmd = run_appliance_menu_cmd('shutdown', JSON.generate({ "shutdown": true }))
+    if cmd[:output]["status"]
       flash[:success] = 'Stopping the machine'
     else
       flash[:danger] = 'Encountered an error whilst trying to stop the machine'
