@@ -18,12 +18,13 @@ class UsersController < ApplicationController
           }
         )
 
-        unless user_params[:ssh_key].nil?
-          set_ssh_key(user_params)
-        end
-
         if run_appliance_menu_cmd('userCreate', user)[:output]["status"]
           set_password(user_params)
+
+          unless user_params[:ssh_key].nil?
+            set_ssh_key(user_params)
+          end
+
           flash[:success] = 'User created successfully'
         else
           flash[:danger] = 'Encountered an error whilst saving the new user'
