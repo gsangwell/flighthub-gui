@@ -28,9 +28,8 @@
                 </td>
                 <td style="width: 5%;">
                   <%= link_to raw("<i class=\"fa fa-trash\"></i>"),
-                    #users_delete_path(user: user),
-                    users_path,
-                    class: "btn btn-danger disabled",
+                    users_delete_path(user: user),
+                    class: "btn btn-danger #{'disabled' if user == current_user.username}",
                     style: 'width: 100%;',
                     data: {
                       confirm: <<~EOF
