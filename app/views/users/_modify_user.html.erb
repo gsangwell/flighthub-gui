@@ -14,7 +14,7 @@
             <%= f.label :username, 'Username:' %>
           </div>
           <div class="col-sm-9">
-            <%= f.text_field :username, class: 'form-control', disabled: true %>
+            <%= f.text_field :username, class: 'form-control', readonly: true %>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
             <%= f.label :password_confirmation, 'Confirm password:' %>
           </div>
           <div class="col-sm-9">
-            <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
           </div>
         </div>
 
