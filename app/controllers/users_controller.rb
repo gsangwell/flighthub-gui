@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   require 'json'
+  require 'securerandom'
 
   def index
     @users = run_appliance_menu_cmd('userGetList')[:output]["users"]
@@ -17,11 +18,12 @@ class UsersController < ApplicationController
           }
         )
 
-        unless user_params[:ssh_key].empty?
+        unless user_params[:ssh_key].nil?
           set_ssh_key(user_params)
         end
 
         if run_appliance_menu_cmd('userCreate', user)[:output]["status"]
+          set_password(user_params)
           flash[:success] = 'User created successfully'
         else
           flash[:danger] = 'Encountered an error whilst saving the new user'
@@ -84,5 +86,20 @@ class UsersController < ApplicationController
     )
 
     run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
+  end
+
+  def set_password(params)
+    user_password_data = JSON.generate(
+      {
+        "user-name": params[:username],
+        "passwd": params[:password].crypt(
+          '$6$' + SecureRandom.random_number(36 ** 8).to_s(36)
+        )
+      }
+    )
+
+    unless run_appliance_menu_cmd('userSetPasswd', user_password_data)[:output]["status"]
+      flash[:danger] = 'Encountered an error whilst setting the password'
+    end
   end
 end
