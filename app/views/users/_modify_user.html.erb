@@ -7,7 +7,7 @@
       <%= form_for(
         :user_modify,
         url: users_modify_path,
-        html: { class: 'creation-form styled-form' }) do |f|
+        html: { class: 'creation-form styled-form w-100' }) do |f|
       %>
         <div class="row mb-1">
           <div class="col-sm-3 form-label mt-1">
@@ -30,7 +30,7 @@
 
         <div class="row mb-1">
           <div class="col-sm-3 form-label mt-1">
-            <%= f.label :password_confirmation, 'Confirmation:' %>
+            <%= f.label :password_confirmation, 'Confirm password:' %>
           </div>
           <div class="col-sm-9">
             <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
