@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     post 'users/modify', to: 'users#modify'
     post 'users/delete', to: 'users#remove'
 
+    get 'vpn', to: 'vpn#index'
+
     get 'console', to: 'console#index'
 
     delete  '/logout',  to: 'sessions#destroy'
