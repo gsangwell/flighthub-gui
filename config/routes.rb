@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post 'users/delete', to: 'users#remove'
 
     get 'vpn', to: 'vpn#index'
+    post 'vpn/assign', to: 'vpn#assign'
 
     get 'console', to: 'console#index'
 
