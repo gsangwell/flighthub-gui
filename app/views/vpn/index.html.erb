@@ -1,1 +1,11 @@
 <% content_for(:title) { 'VPN Management' } %>
+
+<div class="row center mt-3" style="width: 90%;">
+  <% @slots.each do |slot, configuration| %>
+    <% if configuration.empty? %>
+      <%= render 'unconfigured_vpn_card', name: slot %>
+    <% else %>
+      <%= render 'configured_vpn_card', name: slot, config: configuration %>
+    <% end %>
+  <% end %>
+</div>
