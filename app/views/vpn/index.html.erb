@@ -9,12 +9,12 @@
         <% else %>
           <%= render 'configured_vpn_card',
                       name: slot,
-                      client_name: configuration["clientname"],
                       status: if configuration["connstatus"]
                                 { text: 'Online', class: 'text-success' }
                               else
                                 { text: 'Offline', class: 'text-danger' }
                               end,
+                      client_name: configuration["clientname"],
                       client_script: configuration["script"]
           %>
         <% end %>
