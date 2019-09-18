@@ -16,6 +16,12 @@
       </div>
       <div class="col-sm-6">
         <input id=<%= name %> class="form-control" readonly>
+        <button class="input-icon" type="button" onclick="copyToClipboard(<%= name %>)">
+          <span class="fa fa-copy"
+                data-toggle="tooltip"
+                title="Copy to clipboard">
+          </span>
+        </button>
       </div>
       <div class="col-sm-3 text-center">
         <input class="btn btn-primary w-100"
@@ -35,6 +41,13 @@ function generatePassword(e) {
   }).done(function(data, textStatus, xhr){
     $(e).val(xhr.responseText);
   });
+}
+
+function copyToClipboard(e) {
+  e.select();
+  e.setSelectionRange(0, 99999);
+
+  document.execCommand("copy");
 }
 
 </script>
