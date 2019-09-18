@@ -9,5 +9,32 @@
         <%= config["clientname"] %>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-3 form-label mt-1">
+        <p>Password:</p>
+      </div>
+      <div class="col-sm-6">
+        <input id=<%= name %> class="form-control" readonly>
+      </div>
+      <div class="col-sm-3 text-center">
+        <input class="btn btn-primary w-100"
+               type="button"
+               value="Generate" onclick="generatePassword(<%= name %>)">
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+
+function generatePassword(e) {
+  $.ajax({
+    url: '<%= vpn_generate_password_path(slot: name) %>',
+    method: 'GET'
+  }).done(function(data, textStatus, xhr){
+    $(e).val(xhr.responseText);
+  });
+}
+
+</script>
