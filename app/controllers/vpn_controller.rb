@@ -25,6 +25,15 @@ class VpnController < ApplicationController
     redirect_to vpn_path
   end
 
+  def generate_password
+    slot = params[:slot]
+    cmd = run_appliance_menu_cmd('vpnGeneratePasswd', JSON.generate({"vpn": slot}))
+
+    if cmd[:output]["status"]
+      render plain: cmd[:output][slot]
+    end
+  end
+
   private
 
   def vpn_params
