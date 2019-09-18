@@ -58,3 +58,20 @@ a.fill-container {
   width: 100%;
   text-decoration: none;
 }
+
+.input-icon {
+  float: right;
+  margin-top: -32px;
+  border: 0;
+  position: relative;
+  background: transparent;
+  color: gray;
+}
+
+.input-icon:focus {
+  outline: none;
+}
+
+.input-icon:hover {
+  color: black;
+}
