@@ -7,7 +7,15 @@
         <% if configuration.empty? %>
           <%= render 'unconfigured_vpn_card', name: slot %>
         <% else %>
-          <%= render 'configured_vpn_card', name: slot, config: configuration %>
+          <%= render 'configured_vpn_card',
+                      name: slot,
+                      config: configuration,
+                      status: if configuration["connstatus"]
+                                { text: 'Online', class: 'text-success' }
+                              else
+                                { text: 'Offline', class: 'text-danger' }
+                              end
+          %>
         <% end %>
       </div>
     </div>

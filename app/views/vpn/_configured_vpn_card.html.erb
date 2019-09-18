@@ -1,5 +1,12 @@
 <div class="card d-flex mb-2">
-  <h5 class="card-header"><%= name %></h5>
+  <div>
+    <h5 class="card-header"><%= name %>
+      <span class="pull-right <%= status[:class] %>">
+        <i class="fa fa-power-off"></i>
+        <%= status[:text] %>
+      </span>
+    </h5>
+  </div>
   <div class="card-body">
     <div class="row">
       <div class="col-sm-3 form-label">
