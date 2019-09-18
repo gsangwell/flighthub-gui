@@ -3,6 +3,14 @@ class VpnController < ApplicationController
 
   def index
     @slots = run_appliance_menu_cmd('vpnStatus')[:output]["vpns"]
+
+    @slots.each do |slot, config|
+      config["script"] = run_appliance_menu_cmd(
+        'vpnViewClientScript',
+        JSON.generate({ "vpn": slot })
+      )[:output][slot]
+    end
+
     run_appliance_menu_cmd('vpnSlotsAvail')[:output]["slots"].each do |slot|
       @slots[slot] = {}
     end
