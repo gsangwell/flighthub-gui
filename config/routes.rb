@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'vpn', to: 'vpn#index'
     post 'vpn/assign', to: 'vpn#assign'
     get 'vpn/generate_password/:slot', to: 'vpn#generate_password', as: :vpn_generate_password
+    post 'vpn/deconfigure', to: 'vpn#deconfigure'
 
     get 'console', to: 'console#index'
 
