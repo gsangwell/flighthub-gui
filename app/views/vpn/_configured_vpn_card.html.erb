@@ -47,6 +47,19 @@
         </textarea>
       </div>
     </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-3 center">
+        <%= link_to 'Deconfigure',
+                    vpn_deconfigure_path(slot: name),
+                    class: 'btn btn-danger w-100',
+                    method: :post,
+                    data: { confirm: "Are you sure you wish to deconfigure this VPN slot?" }
+        %>
+      </div>
+    </div>
   </div>
 </div>
 
