@@ -42,6 +42,25 @@ class VpnController < ApplicationController
     end
   end
 
+  def deconfigure
+    slot = params[:slot]
+
+    vpn_deconfigure_data = JSON.generate(
+      {
+        "vpn": slot,
+        "deconfigure": true
+      }
+    )
+
+    if run_appliance_menu_cmd('vpnDeconfigure', vpn_deconfigure_data)[:output]["status"]
+      flash[:success] = "Successfully deconfigured #{slot}"
+    else
+      flash[:danger] = "Encountered an error whilst trying to deconfigure #{slot}"
+    end
+
+    redirect_to vpn_path
+  end
+
   private
 
   def vpn_params
