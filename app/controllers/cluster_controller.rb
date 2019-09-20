@@ -2,12 +2,6 @@ class ClusterController < ApplicationController
   require 'json'
 
   def index
-    #BoltOns
-    @vpn = {
-      enabled: bolt_on_enabled('VPN'),
-      status: vpn_status,
-      name: vpn_name
-    }
     @info = run_appliance_menu_cmd('infoInst')[:output]
     @network = run_appliance_menu_cmd('inetStat')[:output]
 
@@ -53,13 +47,5 @@ class ClusterController < ApplicationController
     file_data = IO.binread(file) if File.exist? file
 
     format_markdown(file_data)
-  end
-
-  def vpn_status
-    run_global_script(ENV['VPN_STATUS'])[:status].success?
-  end
-
-  def vpn_name
-    run_global_script(ENV['VPN_NAME'])[:output]
   end
 end
