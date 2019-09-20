@@ -59,7 +59,7 @@ a.fill-container {
   text-decoration: none;
 }
 
-.input-icon {
+.input-icon, .textarea-copy {
   float: right;
   margin-top: -32px;
   border: 0;
@@ -68,10 +68,14 @@ a.fill-container {
   color: gray;
 }
 
-.input-icon:focus {
+.input-icon:focus, .textarea-copy:focus {
   outline: none;
 }
 
-.input-icon:hover {
+.input-icon:hover, .textarea-copy:hover {
   color: black;
+}
+
+.textarea-copy {
+  right: 15px;
 }
