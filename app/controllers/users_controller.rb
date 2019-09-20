@@ -58,6 +58,8 @@ class UsersController < ApplicationController
   end
 
   def remove
+    user = User.find_by_username(user_params)
+
     if user_params == current_user.username
       flash[:danger] = "You can't delete yourself"
     else
@@ -69,6 +71,7 @@ class UsersController < ApplicationController
       )
 
       if run_appliance_menu_cmd('userDelete', user_deletion_data)
+        user.destroy if user
         flash[:success] = 'User removed successfully'
       else
         flash[:danger] = 'Encountered an error whilst deleting the user'
