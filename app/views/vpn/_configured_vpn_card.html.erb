@@ -22,13 +22,13 @@
         <p>Password:</p>
       </div>
       <div class="col-sm-6 mb-1">
-        <input id=<%= name %> class="form-control" readonly>
         <button class="input-icon" type="button" onclick="copyToClipboard(<%= name %>)">
           <span class="fa fa-copy"
                 data-toggle="tooltip"
                 title="Copy to clipboard">
           </span>
         </button>
+        <input id=<%= name %> class="form-control" readonly>
         <small class="form-text text-muted text-left">
           <i class="fa fa-exclamation-circle"></i>
           Once you leave this page you will not be able to reobtain this password
@@ -46,7 +46,13 @@
         <p>Script:</p>
       </div>
       <div class="col-sm-9">
-        <textarea class="form-control" readonly><%= client_script.lstrip %></textarea>
+        <button class="textarea-copy" type="button" onclick="copyToClipboard(<%= name %>_script)">
+          <span class="fa fa-copy"
+                data-toggle="tooltip"
+                title="Copy to clipboard">
+          </span>
+        </button>
+        <textarea id="<%= name %>_script" class="form-control" readonly><%= client_script.lstrip %></textarea>
       </div>
     </div>
 
