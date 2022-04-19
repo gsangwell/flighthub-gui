@@ -1,40 +1,40 @@
 <% content_for(:title) { 'Network Management' } %>
 
 <div class="row center mt-3" style="width: 90%;">
-  <%= form_for :network,
-               as: :post,
-               url: network_edit_path,
-               html: {
-                  id: 'network-var-edit-form',
-                  class: 'center',
-                  style: 'width: 70%;'
-               } do |f| %>
-    <% @networks.each do |network| %>
+  <div class="col" style="min-width: 50%;">
+  <h3 class="header">Network Interfaces</h3>
+    <% @network_interfaces.each do |interface| %>
       <div>
         <div class="card d-flex center">
-          <div class="card-header">
-            <% network_name = network.shift.split(' ')[1] %>
-            <h5 style="display: inline-block"><%= network_name %> Network</h5>
-            <%= link_to raw('<i class="fa fa-pencil fa-pull-right mt-1"></i>'),
-                        "##{network_name}_network_modal",
-                        "data-toggle": 'modal'
-            %>
-          </div>
+          <h5 class="card-header">Interface: <%= interface['name'] %></h5>
           <div class="card-body">
-            <% network.each do |variable| %>
-              <%= format_markdown(variable).html_safe %>
-            <% end %>
+            <b>Name</b>: <%= interface['name'] %><br>
+            <b>Status</b>: <%= interface['status'] %><br>
+            <b>Hardware Address</b>: <%= interface['mac'] %><br>
+            <b>IPV4</b>: <%= interface['ipv4'] %><br>
+            <b>Firewall Zone</b>: <%= interface['firewall_zone'] %><br>
           </div>
         </div>
       </div>
       <br>
-      <%= render 'network/modify_network_modal', name: network_name, f: f %>
     <% end %>
-  <% end %>
-
+  </div>
   <div class="col">
+    <h3 class="header">Firewall Zones</h3>
+    <% @firewall_zones.each do |zone| %>
     <div>
-      <%= render 'external_ssh_controls' %>
-    </div>
+        <div class="card d-flex center">
+          <h5 class="card-header">Zone: <%= zone['name'] %></h5>
+          <div class="card-body">
+            <b>Name</b>: <%= zone['name'] %><br>
+            <b>Interfaces</b>: <%= zone['interfaces'] %><br>
+            <b>Services</b>: <%= zone['services'] %><br>
+            <b>Ports</b>: <%= zone['ports'] %><br>
+            <b>Masquerade</b>: <%= zone['masquerade'] %><br>
+          </div>
+        </div>
+      </div>
+      <br>
+    <% end %>
   </div>
 </div>

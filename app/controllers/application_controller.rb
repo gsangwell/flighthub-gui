@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
     system(command, out: File::NULL)
   end
 
+  def run_global_script(command, *args)
+    out, err, sta = Open3.capture3(
+      "bash #{ENV['ENTRYPOINT']} #{command} #{args.join(' ')}"
+    )
+
+    return { output: out, error: err, status: sta }
+  end
+
   def run_appliance_menu_cmd(command, *args)
     path = ENV['APPLIANCE_MENU_API_PATH']
 

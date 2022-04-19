@@ -4,6 +4,9 @@ class ClusterController < ApplicationController
   def index
     @info = run_appliance_menu_cmd('infoInst')[:output]
     @network = run_appliance_menu_cmd('inetStat')[:output]
+    @remote_support_enabled = run_appliance_menu_cmd('supportStatus')[:output]['status']
+    @remote_support_enabled_since = run_appliance_menu_cmd('supportEnabledSince')[:output]['enabled-since']
+    @remote_support_ping = run_appliance_menu_cmd('supportPing')[:output]['status']
 
     @content = appliance_information
   end
@@ -30,11 +33,21 @@ class ClusterController < ApplicationController
     redirect_to cluster_path
   end
 
-  def enable_eng_mode
-    if run_appliance_menu_cmd('engMode')[:status].success?
-      flash[:success] = 'Engineering Mode has been enabled for 1 hour'
+  def enable_remote_support
+    if run_appliance_menu_cmd('supportEnable')[:status].success?
+      flash[:success] = 'Alces Support Mode has been enabled.'
     else
-      flash[:danger] = 'Encountered an error whilst trying to enable Engineering Mode'
+      flash[:danger] = 'Encountered an error whilst trying to enable Alces Support Mode'
+    end
+
+    redirect_to cluster_path
+  end
+
+  def disable_remote_support
+    if run_appliance_menu_cmd('supportDisable')[:status].success?
+      flash[:success] = 'Alces Support Mode has been disabled'
+    else
+      flash[:danger] = 'Encountered an error whilst trying to disable Alces Support Mode'
     end
 
     redirect_to cluster_path

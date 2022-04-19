@@ -1,13 +1,27 @@
 <div class="card d-flex center mb-2">
-  <h5 class="card-header">Engineering Mode</h5>
+  <h5 class="card-header">Alces Support</h5>
   <div class="card-body">
+    <% if @remote_support_enabled %>
+    <b>Remote Support Enabled</b>: <%= @remote_support_enabled %><br>
+    <b>Enabled Since</b>: <%= @remote_support_enabled_since %><br>
+    <b>Ping Support Hub</b>: <%= @remote_support_ping %><br><br>
     <div class="btn-group d-flex">
-      <%= link_to 'Enable Engineering Mode',
-                  cluster_enable_engineering_mode_path,
+      <%= link_to 'Disable Alces Support',
+                  cluster_support_disable_path,
+                  class: 'btn btn-danger',
+                  style: 'width: 50%;',
+                  method: :post
+      %>
+    </div>
+    <% else %>
+    <div class="btn-group d-flex">
+      <%= link_to 'Enable Alces Support',
+                  cluster_support_enable_path,
                   class: 'btn btn-primary',
                   style: 'width: 50%;',
                   method: :post
       %>
     </div>
+    <% end %>
   </div>
 </div>

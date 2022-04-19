@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     post 'cluster/restart', to: 'cluster#restart'
     post 'cluster/stop', to: 'cluster#stop'
 
+    post 'cluster/support-enable', to: 'cluster#enable_remote_support'
+    post 'cluster/support-disable', to: 'cluster#disable_remote_support'
+
     get 'users', to: 'users#index'
     post 'users', to: 'users#create'
     post 'users/modify', to: 'users#modify'
@@ -22,6 +25,18 @@ Rails.application.routes.draw do
     delete  '/logout',  to: 'sessions#destroy'
 
     match '/login' => redirect('/'), via: :get
+
+    get 'network', to: 'network#index'
+    post 'network/edit', to: 'network#edit'
+    post 'firewall/add-ssh', to: 'network#add_ssh_service'
+    post 'firewall/remove-ssh', to: 'network#remove_ssh_service'
+
+    get 'ssh', to: 'keys#index'
+    post 'ssh', to: 'keys#create'
+    post 'ssh/delete', to: 'keys#delete'
+
+    get 'assets', to: 'assets#index'
+    get 'assets/:name', to: 'assets#single_asset'
 
     root 'cluster#index'
   end
