@@ -15,11 +15,6 @@ Rails.application.routes.draw do
     post 'users/modify', to: 'users#modify'
     post 'users/delete', to: 'users#remove'
 
-    get 'vpn', to: 'vpn#index'
-    post 'vpn/assign', to: 'vpn#assign'
-    get 'vpn/generate_password/:slot', to: 'vpn#generate_password', as: :vpn_generate_password
-    post 'vpn/deconfigure', to: 'vpn#deconfigure'
-
     get 'console', to: 'console#index'
 
     delete  '/logout',  to: 'sessions#destroy'
@@ -27,16 +22,14 @@ Rails.application.routes.draw do
     match '/login' => redirect('/'), via: :get
 
     get 'network', to: 'network#index'
-    post 'network/edit', to: 'network#edit'
+    post 'network/configure', to: 'network#configure'
+    
     post 'firewall/add-ssh', to: 'network#add_ssh_service'
     post 'firewall/remove-ssh', to: 'network#remove_ssh_service'
 
     get 'ssh', to: 'keys#index'
     post 'ssh', to: 'keys#create'
     post 'ssh/delete', to: 'keys#delete'
-
-    get 'assets', to: 'assets#index'
-    get 'assets/:name', to: 'assets#single_asset'
 
     root 'cluster#index'
   end

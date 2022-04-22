@@ -6,17 +6,24 @@
     <% @network_interfaces.each do |interface| %>
       <div>
         <div class="card d-flex center">
-          <h5 class="card-header">Interface: <%= interface['name'] %></h5>
+          <div class="card-header">
+            <h5 style="display: inline-block">Network: <%= interface['name'] %></h5>
+            <%= link_to raw('<i class="fa fa-pencil fa-pull-right mt-1"></i>'),
+                        "##{interface['name']}_network_modal",
+                        "data-toggle": 'modal'
+            %>
+          </div>
           <div class="card-body">
             <b>Name</b>: <%= interface['name'] %><br>
             <b>Status</b>: <%= interface['status'] %><br>
             <b>Hardware Address</b>: <%= interface['mac'] %><br>
-            <b>IPV4</b>: <%= interface['ipv4'] %><br>
+            <b>IPV4</b>: <%= interface['ipv4'].join(", ") %><br>
             <b>Firewall Zone</b>: <%= interface['firewall_zone'] %><br>
           </div>
         </div>
       </div>
       <br>
+      <%= render 'network/modify_network_modal', name: interface['name'] %>
     <% end %>
   </div>
   <div class="col">
@@ -27,9 +34,9 @@
           <h5 class="card-header">Zone: <%= zone['name'] %></h5>
           <div class="card-body">
             <b>Name</b>: <%= zone['name'] %><br>
-            <b>Interfaces</b>: <%= zone['interfaces'] %><br>
-            <b>Services</b>: <%= zone['services'] %><br>
-            <b>Ports</b>: <%= zone['ports'] %><br>
+            <b>Interfaces</b>: <%= zone['interfaces'].join(", ") %><br>
+            <b>Services</b>: <%= zone['services'].join(", ") %><br>
+            <b>Ports</b>: <%= zone['ports'].join(", ") %><br>
             <b>Masquerade</b>: <%= zone['masquerade'] %><br>
           </div>
         </div>

@@ -2,41 +2,42 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title center"><%= name %> Network</h4>
+        <h4 class="modal-title center">Set Static Configuration: <%= name %></h4>
       </div>
       <div class="modal-body">
+        <%= form_for :network,
+               as: :post,
+               url: network_configure_path,
+               html: {
+                  id: 'network-var-edit-form',
+                  class: 'center',
+                  style: 'width: 100%;'
+               } do |f| %>
+        <%= f.hidden_field :name, :value => name %>
         <div class="table-responsive">
-          <h5 class="text-center"> Modify Network Variables </h5>
-          <br>
+          <h5>Static Configuration</h5>
           <table class="table table-bordered center">
-            <thead>
-              <tr>
-                <th style="width: 30%;">Variable</th>
-                <th>Value</th>
-              </tr>
-            </thead>
             <tbody>
-              <% @network_vars.select { |v| v.include?(name.upcase) }.each do |var| %>
-                <% content = var.split("=") %>
-                <% variable = content[0] %>
-                <% value = content[1].split("\n") %>
-
-                <tr>
-                  <td>
-                    <code><%= variable %></code>
-                  </td>
-                  <td>
-                    <%= f.text_field variable, class: 'form-control', value: value %>
-                  </td>
-                </tr>
-              <% end %>
+              <tr>
+                <th><code>IPV4</code></th>
+                <th><%= f.text_field "ipv4", class: 'form-control', required: true %></th>
+              </tr>
+              <tr>
+                <th><code>Netmask</code></th>
+                <th><%= f.text_field "netmask", class: 'form-control', required: true %></th>
+              </tr>
+              <tr>
+                <th><code>Default Gateway</code></th>
+                <th><%= f.text_field "gateway", class: 'form-control', required: false %></th>
+              </tr>
             </tbody>
           </table>
         </div>
         <br>
-        <%= f.submit "Submit Changes",
+        <%= f.submit "Save Static Configuration",
                      disable_with: 'Saving...',
                      class: 'btn btn-primary btn-block center mb-3' %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
