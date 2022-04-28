@@ -22,7 +22,7 @@ class UsersController < ApplicationController
           set_password(user_params)
 
           unless user_params[:ssh_key].nil?
-            set_ssh_key(user_params)
+            add_ssh_key(user_params)
           end
 
           flash[:success] = 'User created successfully'
@@ -43,15 +43,15 @@ class UsersController < ApplicationController
     modifications = []
 
     unless modify_params[:password].empty?
-      modifications << 'password' if set_password(modify_params)
+      modifications << 'changed password' if set_password(modify_params)
     end
 
     unless modify_params[:ssh_key].empty?
-      modifications << 'SSH key' if set_ssh_key(modify_params)
+      modifications << 'added SSH key' if add_ssh_key(modify_params)
     end
 
     unless modifications.empty?
-      flash[:success] = "Successfully modified #{modifications.join(' and ')} for #{modify_params[:username]}"
+      flash[:success] = "Successfully #{modifications.join(' and ')} for #{modify_params[:username]}"
     end
 
     redirect_to users_path
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
         }
       )
 
-      if run_appliance_menu_cmd('userDelete', user_deletion_data)
+     if run_appliance_menu_cmd('userDelete', user_deletion_data)[:output]["status"]
         user.destroy if user
         flash[:success] = 'User removed successfully'
       else
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     params[:user_modify]
   end
 
-  def set_ssh_key(params)
+  def add_ssh_key(params)
     user_key_data = JSON.generate(
       {
         "user-name": params[:username],
@@ -99,10 +99,10 @@ class UsersController < ApplicationController
       }
     )
 
-    if run_appliance_menu_cmd('userSetKey', user_key_data)[:output]["status"]
+    if run_appliance_menu_cmd('userAddKey', user_key_data)[:output]["status"]
       return true
     else
-      flash[:danger] = 'Encountered an error whilst setting the SSH key'
+      flash[:danger] = 'Encountered an error whilst adding the SSH key'
     end
   end
 

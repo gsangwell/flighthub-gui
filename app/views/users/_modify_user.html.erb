@@ -40,14 +40,14 @@
         <hr>
         <div class="row mb-1">
           <div class="col-sm-3 form-label mt-1">
-            <%= f.label :ssh_key, 'SSH Key:' %>
+            <%= f.label :ssh_key, 'Additional SSH Key:' %>
           </div>
           <div class="col-sm-9">
             <%= f.text_area :ssh_key, class: 'form-control' %>
           </div>
         </div>
 
-        <%= f.submit 'Update', class: 'btn btn-primary mt-2' %>
+        <%= f.submit 'Update', id: 'user_modify_update', class: 'btn btn-primary mt-2' %>
       <% end %>
     </div>
     <div class="modal-footer">
