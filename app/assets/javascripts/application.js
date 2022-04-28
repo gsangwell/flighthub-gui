@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require rails-ujs
 //= require activestorage
 //= require popper
@@ -21,3 +23,10 @@
 //= require react.min.js
 //= require react-dom.min.js
 //= require flight-tutorials-client.min.js
+
+$(document).ready(function() {
+    // show the alert
+    $(".alert").first().delay(4000).slideUp(500, function () {
+       $(this).remove(); 
+    });
+});

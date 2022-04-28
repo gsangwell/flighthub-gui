@@ -45,6 +45,7 @@ gem 'dotenv-rails'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails' # Required for Bootstrap.
+gem 'jquery-validation-rails'
 
 gem 'rpam2'
 
