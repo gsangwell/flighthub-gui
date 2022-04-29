@@ -8,10 +8,12 @@
         <div class="card d-flex center">
           <div class="card-header">
             <h5 style="display: inline-block">Network: <%= interface['name'] %></h5>
-            <%= link_to raw('<i class="fa fa-pencil fa-pull-right mt-1"></i>'),
-                        "##{interface['name']}_network_modal",
-                        "data-toggle": 'modal'
-            %>
+            <% if @metal_platform %>
+              <%= link_to raw('<i class="fa fa-pencil fa-pull-right mt-1"></i>'),
+                          "##{interface['name']}_network_modal",
+                          "data-toggle": 'modal'
+              %>
+            <% end %>
           </div>
           <div class="card-body">
             <b>Name</b>: <%= interface['name'] %><br>
@@ -23,7 +25,9 @@
         </div>
       </div>
       <br>
-      <%= render 'network/modify_network_modal', name: interface['name'] %>
+      <% if @metal_platform %>
+        <%= render 'network/modify_network_modal', name: interface['name'] %>
+      <% end %>
     <% end %>
   </div>
   <div class="col">
