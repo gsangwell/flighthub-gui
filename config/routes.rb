@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  constraints Constraints::SetupWizardConstraint.new do
+    get '/setup',   to: 'setup#start'
+
+    get '/setup/user',    to: 'setup#user'
+    post '/setup/user',    to: 'setup#createUser'
+
+    get '/setup/network',    to: 'setup#network'
+    post '/setup/network',    to: 'setup#configureNetwork'
+
+    get '/setup/finish',     to: 'setup#finish'
+    post '/setup/finish',    to: 'setup#doFinish'
+
+    match '*path', to: 'setup#start', via: :get
+    root 'setup#start'
+  end
+
   constraints Clearance::Constraints::SignedIn.new do
     get 'cluster', to: 'cluster#index'
-    post 'cluster/enable_engineering_mode', to: 'cluster#enable_eng_mode'
     post 'cluster/restart', to: 'cluster#restart'
     post 'cluster/stop', to: 'cluster#stop'
 
@@ -23,7 +38,7 @@ Rails.application.routes.draw do
 
     get 'network', to: 'network#index'
     post 'network/configure', to: 'network#configure'
-    
+
     post 'firewall/add-ssh', to: 'network#add_ssh_service'
     post 'firewall/remove-ssh', to: 'network#remove_ssh_service'
 
@@ -31,6 +46,7 @@ Rails.application.routes.draw do
     post 'ssh', to: 'keys#create'
     post 'ssh/delete', to: 'keys#delete'
 
+    match '*path', to: 'cluster#index', via: :get
     root 'cluster#index'
   end
 
@@ -42,4 +58,5 @@ Rails.application.routes.draw do
 
     root 'sessions#new'
   end
+
 end
