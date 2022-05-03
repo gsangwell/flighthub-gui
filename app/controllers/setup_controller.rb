@@ -58,7 +58,7 @@ class SetupController < ApplicationController
 
     if doConfigureNetwork(network_params)
       flash[:success] = 'Network configuration saved.'
-      cookies.encrypted[:setup_stage] = "https"
+      cookies.encrypted[:setup_stage] = "finish"
       redirect_to setup_finish_path
       return
     else
