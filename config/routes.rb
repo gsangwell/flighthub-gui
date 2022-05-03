@@ -1,3 +1,5 @@
+require 'constraints/setup_wizard_constraint'
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
