@@ -41,8 +41,9 @@ Rails.application.routes.draw do
     get 'network', to: 'network#index'
     post 'network/configure', to: 'network#configure'
 
-    post 'firewall/add-ssh', to: 'network#add_ssh_service'
-    post 'firewall/remove-ssh', to: 'network#remove_ssh_service'
+    get 'ssl', to: 'ssl#index'
+    post 'ssl/csr', to: 'ssl#csr'
+    post 'ssl/cert', to: 'ssl#cert'
 
     get 'ssh', to: 'keys#index'
     post 'ssh', to: 'keys#create'

@@ -1,4 +1,5 @@
 class NetworkController < ApplicationController
+  before_action -> { redirect_unless_bolt_on("Network") }
 
   def index
     platform_type = run_appliance_menu_cmd('infoInst')[:output]['type']

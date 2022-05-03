@@ -6,5 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+BoltOn.create!(name: 'Users', enabled: true)
+BoltOn.create!(name: 'Network', enabled: true)
+BoltOn.create!(name: 'SSL', enabled: true)
 BoltOn.create!(name: 'Console', enabled: true)
 BoltOn.create!(name: 'Setup', enabled: true)
