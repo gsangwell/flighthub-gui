@@ -45,10 +45,6 @@ Rails.application.routes.draw do
     post 'ssl/csr', to: 'ssl#csr'
     post 'ssl/cert', to: 'ssl#cert'
 
-    get 'ssh', to: 'keys#index'
-    post 'ssh', to: 'keys#create'
-    post 'ssh/delete', to: 'keys#delete'
-
     match '*path', to: 'cluster#index', via: :get
     root 'cluster#index'
   end
