@@ -17,7 +17,8 @@ class NetworkController < ApplicationController
              "static":"true",
              "ipv4": params['network']['ipv4'],
              "netmask": params['network']['netmask'],
-             "gateway": params['network']['gateway'] != "" ? params['network']['gateway'] : nil
+             "gateway": params['network']['gateway'] != "" ? params['network']['gateway'] : nil,
+             "dns": params['network']['dns'] != "" ? params['network']['dns'] : nil
          }
     }
     )
