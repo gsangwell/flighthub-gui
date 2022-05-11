@@ -46,6 +46,14 @@
               <%= f.text_field :gateway, class: 'form-control' %>
             </div>
           </div>
+          <div class="row mb-1">
+            <div class="col-sm-4 form-label mt-1">
+              <%= f.label :dns, 'DNS Server:' %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.text_field :dns, class: 'form-control', required: true %>
+            </div>
+          </div>
           <hr>
           <%= f.submit 'Next', class: 'btn btn-primary mt-2' %>
         <% end %>

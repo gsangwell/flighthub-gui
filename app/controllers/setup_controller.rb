@@ -134,7 +134,8 @@ class SetupController < ApplicationController
              "static":"true",
              "ipv4": network_params['ipv4'],
              "netmask": network_params['netmask'],
-             "gateway": network_params['gateway'] != "" ? network_params['gateway'] : nil
+             "gateway": network_params['gateway'] != "" ? network_params['gateway'] : nil,
+             "dns": network_params['dns'] != "" ? network_params['dns'] : nil
          }
       }
     )
