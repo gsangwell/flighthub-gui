@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   require 'securerandom'
 
   def index
-    @users = run_appliance_menu_cmd('userGetList')[:output]["users"]
+    @users = run_appliance_menu_cmd('userGetOperators')[:output]["users"]
       .sort.map { |u| u.gsub(/\(.*?\)/, "") }
   end
 
